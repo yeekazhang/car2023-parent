@@ -33,7 +33,6 @@ public class HBaseUtil {
         TableName tableName = TableName.valueOf(nameSpace,table);
         // 判断要建的表是否存在
         if (admin.tableExists(tableName)) {
-            System.out.println("表已存在");
             return;
         }
         // 列族描述器
@@ -44,8 +43,6 @@ public class HBaseUtil {
             .build();
         admin.createTable(desc);
         admin.close();
-        System.out.println(nameSpace + " " + table + " 建表成功");
-
     }
 
     public static void putRow(Connection conn,
@@ -72,7 +69,6 @@ public class HBaseUtil {
 
         t.close();
 
-        System.out.println("添加成功");
 
     }
 
