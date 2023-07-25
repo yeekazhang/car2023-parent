@@ -1,7 +1,7 @@
 package com.atguigu.app;
 
-import com.atguigu.gmall.realtime.common.Constant;
-import com.atguigu.gmall.realtime.util.SQLUtil;
+import com.atguigu.common.Constant;
+import com.atguigu.util.SQLUtil;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.runtime.state.hashmap.HashMapStateBackend;
 import org.apache.flink.streaming.api.CheckpointingMode;
@@ -26,7 +26,7 @@ public abstract class BaseSQLApp {
        //3.设置checkpoint模式 语义
         env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE);//
        //4.checkpoint存储
-        env.getCheckpointConfig().setCheckpointStorage("hdfs://hadoop162:8020/gmall2023/"+ck);
+        env.getCheckpointConfig().setCheckpointStorage("hdfs://hadoop162:8020/car2023/"+ck);
        //5.设置checkpoint最大并发数
         env.getCheckpointConfig().setMaxConcurrentCheckpoints(1);
         //6. checkpoint的最小间隔
