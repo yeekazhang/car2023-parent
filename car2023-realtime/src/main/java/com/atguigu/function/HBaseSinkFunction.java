@@ -27,8 +27,6 @@ public class HBaseSinkFunction extends RichSinkFunction<JSONObject> {
     @Override
     public void invoke(JSONObject obj, Context context) throws Exception {
 
-        System.out.println(obj);
-
         String opType = obj.getString("op");
 
         if ("d".equals(opType)) {
@@ -44,8 +42,6 @@ public class HBaseSinkFunction extends RichSinkFunction<JSONObject> {
 
     private void putDim(JSONObject obj) throws IOException {
         JSONObject data = obj.getJSONObject("data");
-
-        System.out.println(data);
 
         HBaseUtil.putRow(conn,
             Constant.HBASE_NAMESPACE,

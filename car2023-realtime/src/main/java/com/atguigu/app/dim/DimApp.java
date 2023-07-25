@@ -28,6 +28,7 @@ import java.util.Properties;
 public class DimApp extends BaseApp {
     public static void main(String[] args) {
         new DimApp().start(20001,
+            2,
             "DimApp",
             Constant.TOPIC_ODS_LOG
            );
@@ -71,7 +72,6 @@ public class DimApp extends BaseApp {
                     obj.put("rowKey",data.getString("id"));
                     String table = "dim_" + value.getJSONObject("source").getString("table");
                     obj.put("sinkTable", table);
-                    //System.out.println(obj);
                     return obj;
                 }
             })
@@ -96,7 +96,6 @@ public class DimApp extends BaseApp {
                     obj.put("rowKey",data.getString("dic_id"));
                     String table = "dim_" + value.getJSONObject("source").getString("table");
                     obj.put("sinkTable", table);
-                    //System.out.println(obj);
                     return obj;
                 }
             })

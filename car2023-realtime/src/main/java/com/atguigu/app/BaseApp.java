@@ -23,7 +23,7 @@ public abstract class BaseApp {
         // rest.port flink会在制定的端口启动一个http服务器，是的用户可以使用rest app与flink进行交互，执行任务和作业
         conf.setInteger("rest.port", port);
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment(conf);
-        env.setParallelism(2);
+        env.setParallelism(p);
         // 1. 设置状态后端
         env.setStateBackend(new HashMapStateBackend());
 
