@@ -6,6 +6,7 @@ import com.atguigu.bean.EnergyChargeBean;
 import com.atguigu.common.Constant;
 import com.atguigu.function.DorisMapFunction;
 import com.atguigu.util.DateFormatUtil;
+import com.atguigu.util.FlinkSinkUtil;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.ReduceFunction;
 import org.apache.flink.api.common.state.ValueState;
@@ -45,10 +46,10 @@ public class DwsEnergyChargeCyclesWindow  extends BaseApp {
 
         //1.解析成pojo
         SingleOutputStreamOperator<EnergyChargeBean> beanStream = parseToPoJo(stream);
+
         //2.开窗聚合
         SingleOutputStreamOperator<EnergyChargeBean> resultStream = windowAndAgg(beanStream);
 
-        //3.写到doris
         writeToDoris(resultStream);
 
 
@@ -56,7 +57,8 @@ public class DwsEnergyChargeCyclesWindow  extends BaseApp {
 
     private void writeToDoris(SingleOutputStreamOperator<EnergyChargeBean> resultStream) {
 
-        resultStream.map(new DorisMapFunction())
+         resultStream.map(new DorisMapFunction())
+                .sinkTo(FlinkSinkUtil.getDorisSink("car.dws_energy_charge_cycles_window"));
 
 
 
@@ -76,6 +78,8 @@ public class DwsEnergyChargeCyclesWindow  extends BaseApp {
                             public EnergyChargeBean reduce(EnergyChargeBean value1, EnergyChargeBean value2) throws Exception {
 
                                 value1.setChargeCycles(value1.getChargeCycles() + value2.getChargeCycles());
+                                value1.setChargeFastCycles(value1.getChargeFastCycles() + value2.getChargeFastCycles());
+                                value1.setChargeSlowCycles(value1.getChargeSlowCycles() + value2.getChargeSlowCycles());
                                 return value1;
                             }
                         },
@@ -103,6 +107,7 @@ public class DwsEnergyChargeCyclesWindow  extends BaseApp {
 
        return stream
                 .map(JSONObject::parseObject)
+               .keyBy(obj -> obj.getString("vin"))
 
                 .process(new ProcessFunction<JSONObject, EnergyChargeBean>() {
 
@@ -121,14 +126,22 @@ public class DwsEnergyChargeCyclesWindow  extends BaseApp {
                                                Collector<EnergyChargeBean> out) throws Exception {
                         String vin = obj.getString("vin");
                         Integer charge_status = obj.getInteger("charge_status");
+                        Integer electricCurrent = obj.getInteger("electric_current");
                         Long timestamp = obj.getLong("timestamp");
                         Integer chargeCycles = 0;
+                        Integer chargeSlowCycles = 0;
+                        Integer chargeFastCycles = 0;
                         Boolean isOnceStateValue  = isOnceState.value();
 
                        if( isOnceStateValue == null || isOnceStateValue ) {
 
                            if (charge_status == 1 || charge_status == 2) {
                                chargeCycles = 1;
+                               if(electricCurrent > 180 ){
+                                   chargeFastCycles = 1;
+                               }else{
+                                   chargeSlowCycles = 1;
+                               }
                                isOnceState.update(false);
 
                            }
@@ -139,7 +152,7 @@ public class DwsEnergyChargeCyclesWindow  extends BaseApp {
                        }
 
 
-                        out.collect(new EnergyChargeBean(vin,chargeCycles,"","","",timestamp,0));
+                        out.collect(new EnergyChargeBean(vin,chargeCycles,chargeSlowCycles,chargeFastCycles,"","","",timestamp,charge_status,electricCurrent));
                     }
                 });
 
