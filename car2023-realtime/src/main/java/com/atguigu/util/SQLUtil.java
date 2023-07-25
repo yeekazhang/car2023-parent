@@ -14,4 +14,25 @@ public class SQLUtil {
                 "  'format' = 'json' " +
                 ")";
     }
+
+    public static String getKafkaDDLSink(String topic) {
+        return "with(" +
+                "  'connector' = 'kafka'," +
+                "  'topic' = '" + topic + "'," +
+                "  'properties.bootstrap.servers' = '" + Constant.KAFKA_BROKERS + "'," +
+                "  'format' = 'json' " +
+                ")";
+    }
+
+    public static String getUpsertKafkaDDL(String topic) {
+        return "with(" +
+                "  'connector' = 'upsert-kafka'," +
+                "  'topic' = '" + topic + "'," +
+                "  'properties.bootstrap.servers' = '" + Constant.KAFKA_BROKERS + "'," +
+                "  'key.json.ignore-parse-errors' = 'true'," +
+                "  'value.json.ignore-parse-errors' = 'true'," +
+                "  'key.format' = 'json', " +
+                "  'value.format' = 'json' " +
+                ")";
+    }
 }
