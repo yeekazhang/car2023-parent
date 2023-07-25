@@ -40,8 +40,7 @@ public class DwdEnergyCharge extends BaseSQLApp {
                 " `dc_status`  ," +
                 "  gear  ," +
                 "  insulation_resistance " +
-                "  from  ods_log " +
-                "   where  charge_status in (1,2,3)");
+                "  from  ods_log " );
 
 
         tEnv.executeSql("create table dwd_energy_charge ( " +

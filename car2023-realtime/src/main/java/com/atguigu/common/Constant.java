@@ -16,4 +16,5 @@ public class Constant {
     public static final String TOPIC_DWD_ALERT_WARN = "dwd_alert_warn";
     public static final String TOPIC_DWD_TEMP_BATTERY = "dwd_temp_battery";
     public static final String TOPIC_DWD_TRIP_JOURNEY = "dwd_trip_journey";
+    public static final String DORIS_FE_NODE = "hadoop162:7030";
 }
