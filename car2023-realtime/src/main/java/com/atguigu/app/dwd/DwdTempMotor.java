@@ -33,10 +33,12 @@ public class DwdTempMotor extends BaseSQLApp {
                 "from  ods_log ");
         tEnv.executeSql("create table dwd_temp_motor (" +
                 " `vin` string  ," +
-                " `timestamp`  ," +
-                " motor_count  ," +
-                " motor_list " +
-                "" + SQLUtil.getKafkaDDLSink("dwd_temp_motor"));
+                " `timestamp` bigint  ," +
+                " motor_count  int  ," +
+                " motor_list ARRAY<ROW<id INT, status INT, controller_temperature INT, rev INT, torque INT, temperature INT, voltage INT, electric_current INT>> " +
+                ")" + SQLUtil.getKafkaDDLSink("dwd_temp_motor"));
+
+        result.executeInsert("dwd_temp_motor");
 
 
 
