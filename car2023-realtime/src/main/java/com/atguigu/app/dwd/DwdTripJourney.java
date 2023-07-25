@@ -2,6 +2,7 @@ package com.atguigu.app.dwd;
 
 
 import com.atguigu.app.BaseSQLApp;
+import com.atguigu.common.Constant;
 import com.atguigu.util.SQLUtil;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.Table;
@@ -59,7 +60,7 @@ public class DwdTripJourney extends BaseSQLApp {
                 "    soc int," +
                 "    dc_status int," +
                 "    gear int " +
-                " )" + SQLUtil.getKafkaDDLSink("dwd_trip_journey")) ;
+                " )" + SQLUtil.getKafkaDDLSink(Constant.TOPIC_DWD_TRIP_JOURNEY)) ;
 
         carTable.executeInsert("dwd_trip_journey");
 

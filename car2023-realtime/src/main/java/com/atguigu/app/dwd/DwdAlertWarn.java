@@ -1,6 +1,7 @@
 package com.atguigu.app.dwd;
 
 import com.atguigu.app.BaseSQLApp;
+import com.atguigu.common.Constant;
 import com.atguigu.util.SQLUtil;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.Table;
@@ -147,7 +148,7 @@ public class DwdAlertWarn extends BaseSQLApp {
                 "         min_temperature_subsystem_id   int ," +
                 "         min_temperature_probe_id   int ," +
                 "         min_temperature    int  " +
-                " )" + SQLUtil.getKafkaDDLSink("dwd_alert_warn")) ;
+                " )" + SQLUtil.getKafkaDDLSink(Constant.TOPIC_DWD_ALERT_WARN)) ;
 
         carTable.executeInsert("dwd_alert_warn");
 

@@ -2,6 +2,7 @@ package com.atguigu.app.dwd;
 
 import com.atguigu.app.BaseApp;
 import com.atguigu.app.BaseSQLApp;
+import com.atguigu.common.Constant;
 import com.atguigu.util.SQLUtil;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.Table;
@@ -61,7 +62,7 @@ public class DwdTempBattery extends BaseSQLApp {
                 "min_temperature_subsystem_id  int ," +
                 "min_temperature_probe_id  int ," +
                 "min_temperature  int  " +
-                ")" + SQLUtil.getKafkaDDLSink("dwd_temp_battery"));
+                ")" + SQLUtil.getKafkaDDLSink(Constant.topic_dwd_temp_battery));
 
         result.executeInsert("dwd_temp_battery");
 
