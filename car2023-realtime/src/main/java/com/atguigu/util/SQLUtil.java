@@ -14,4 +14,13 @@ public class SQLUtil {
                 "  'format' = 'json' " +
                 ")";
     }
+
+    public static String getKafkaDDLSink(String topic) {
+        return "with(" +
+                "  'connector' = 'kafka'," +
+                "  'topic' = '" + topic + "'," +
+                "  'properties.bootstrap.servers' = '" + Constant.KAFKA_BROKERS + "'," +
+                "  'format' = 'json' " +
+                ")";
+    }
 }
