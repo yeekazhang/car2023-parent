@@ -16,7 +16,7 @@ public abstract class BaseApp {
 
     protected abstract void handle(StreamExecutionEnvironment env, DataStreamSource<String> stream);
 
-    public void start(int port, String ckAndGroupId, String topic) {
+    public void start(int port, int p, String ckAndGroupId, String topic) {
         System.setProperty("HADOOP_USER_NAME", "atguigu");
 
         Configuration conf = new Configuration();
