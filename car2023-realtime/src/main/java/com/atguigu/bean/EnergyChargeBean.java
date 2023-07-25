@@ -13,9 +13,6 @@ public class EnergyChargeBean {
 
     String vin  ;
 
-    @JSONField(serialize = false)
-    Long timestamp  ;
-
     Integer  chargeCycles;
 
     String  stt ;
@@ -23,6 +20,12 @@ public class EnergyChargeBean {
     String  edt;
 
     String  curDate;
+
+    @JSONField(serialize = false)
+    Long timestamp  ;
+
+    @JSONField(serialize = false)
+    Integer charge_status  ;
 
 
 }
