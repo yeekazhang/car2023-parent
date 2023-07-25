@@ -58,4 +58,8 @@ public class DateFormatUtil {
         return dateTimeToTs(date + " 00:00:00");
     }
 
+    public static void main(String[] args) {
+        System.out.println(tsToDateTime(1690322940000L));
+    }
+
 }
