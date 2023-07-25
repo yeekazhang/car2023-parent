@@ -1,0 +1,290 @@
+Index: car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdTripJourney.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.atguigu.app.dwd;\n\n\nimport com.atguigu.app.BaseSQLApp;\nimport com.atguigu.util.SQLUtil;\nimport org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;\nimport org.apache.flink.table.api.Table;\nimport org.apache.flink.table.api.bridge.java.StreamTableEnvironment;\n\npublic class DwdTripJourney extends BaseSQLApp {\n\n    public static void main(String[] args) {\n        new DwdTripJourney().start(\n                30001,\n                2,\n                \"DwdTripJourney\"\n        );\n    }\n\n\n    @Override\n    protected void handle(StreamExecutionEnvironment env,\n                          StreamTableEnvironment tEnv) {\n\n        //1.读取ods_db\n        readOdsDb(tEnv);\n\n        //2.过滤出行驶数据\n        Table carTable = tEnv.sqlQuery(\n                \"select   \" +\n                        \" vin ,\" +\n                        \"`timestamp` ,\" +\n                        \"car_status ,\" +\n                        \"charge_status ,\" +\n                        \"execution_mode ,\" +\n                        \"velocity ,\" +\n                        \"mileage ,\" +\n                        \"voltage ,\" +\n                        \"electric_current ,\" +\n                        \"soc ,\" +\n                        \"dc_status ,\" +\n                        \"gear \" +\n                        \"  from ods_log  \" +\n                        \"  where  car_status =  1  \"\n        );\n\n\n\n        tEnv.executeSql(\"create table  dwd_Running_journey (\" +\n                \"    vin string ,\" +\n                \"    `timestamp` bigint,\" +\n                \"    car_status  int,\" +\n                \"    charge_status int,\" +\n                \"    execution_mode int,\" +\n                \"    velocity int,\" +\n                \"    mileage int,\" +\n                \"    voltage int,\" +\n                \"    electric_current int,\" +\n                \"    soc int,\" +\n                \"    dc_status int,\" +\n                \"    gear int \" +\n                \" )\" + SQLUtil.getKafkaDDLSink(\"dwd_Running_journey\")) ;\n\n        carTable.executeInsert(\"dwd_Running_journey\");\n\n\n\n\n\n\n \n\n\n    }\n}\n\n   \n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdTripJourney.java b/car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdTripJourney.java
+--- a/car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdTripJourney.java	(revision c67a04762eed0a8172694e011a566d523200040c)
++++ b/car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdTripJourney.java	(date 1690249958195)
+@@ -23,7 +23,7 @@
+                           StreamTableEnvironment tEnv) {
+ 
+         //1.读取ods_db
+-        readOdsDb(tEnv);
++        readOdsLog(tEnv);
+ 
+         //2.过滤出行驶数据
+         Table carTable = tEnv.sqlQuery(
+Index: car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdElectChargingPile.java
+===================================================================
+diff --git a/car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdElectChargingPile.java b/car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdElectChargingPile.java
+deleted file mode 100644
+--- a/car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdElectChargingPile.java	(revision c67a04762eed0a8172694e011a566d523200040c)
++++ /dev/null	(revision c67a04762eed0a8172694e011a566d523200040c)
+@@ -1,29 +0,0 @@
+-package com.atguigu.app.dwd;
+-
+-import com.atguigu.app.BaseSQLApp;
+-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+-import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
+-
+-public class DwdElectChargingPile extends BaseSQLApp {
+-
+-    public static void main(String[] args) {
+-        new DwdElectChargingPile().start(
+-                30010,
+-                2,
+-                "DwdElectChargingPile"
+-        );
+-    }
+-
+-    @Override
+-    protected void handle(StreamExecutionEnvironment env, StreamTableEnvironment tEnv) {
+-
+-        // 1 读取 ods_db 数据
+-        readOdsLog(tEnv);
+-
+-        // 2 过滤出充电桩充电数据
+-
+-
+-        // 3 写出到 kafka 中
+-
+-    }
+-}
+Index: car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdElectricDischarging.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdElectricDischarging.java b/car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdElectricDischarging.java
+new file mode 100644
+--- /dev/null	(date 1690254079794)
++++ b/car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdElectricDischarging.java	(date 1690254079794)
+@@ -0,0 +1,56 @@
++package com.atguigu.app.dwd;
++
++import com.atguigu.app.BaseSQLApp;
++import com.atguigu.common.Constant;
++import com.atguigu.util.SQLUtil;
++import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
++import org.apache.flink.table.api.Table;
++import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
++
++/**
++ * 车辆放电状态
++ *  车辆在运行中并且运行模式不是燃料模式
++ *      car_status=1 and execution_mode!=3
++ *  并且充电状态是不在充电
++ *      and charge_status=3
++ */
++public class DwdElectricDischarging extends BaseSQLApp {
++
++    public static void main(String[] args) {
++        new DwdElectricDischarging().start(
++                10012,
++                2,
++                "DwdElectricDischarging"
++        );
++    }
++
++    @Override
++    protected void handle(StreamExecutionEnvironment env, StreamTableEnvironment tEnv) {
++        readOdsLog(tEnv);
++
++        Table result = tEnv.sqlQuery(
++                "select " +
++                        "   vin, " +
++                        "   `timestamp`, " +
++                        "   voltage, " +
++                        "   electric_current, " +
++                        "   insulation_resistance " +
++                        "from ods_log " +
++                        "where car_status = 1 " +
++                        "and execution_mode <> 3 " +
++                        "and charge_status = 3"
++        );
++
++        tEnv.executeSql("create table dwd_electric_discharging(" +
++                "   vin string, " +
++                "   `timestamp` bigint, " +
++                "   voltage int, " +
++                "   electric_current int, " +
++                "   insulation_resistance bigint" +
++                ")" + SQLUtil.getKafkaDDLSink(Constant.TOPIC_DWD_ELECTRIC_DISCHARGING));
++
++        result.executeInsert("dwd_electric_discharging");
++
++    }
++}
++
+Index: car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdElectricCharging.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdElectricCharging.java b/car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdElectricCharging.java
+new file mode 100644
+--- /dev/null	(date 1690252662467)
++++ b/car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdElectricCharging.java	(date 1690252662467)
+@@ -0,0 +1,53 @@
++package com.atguigu.app.dwd;
++
++import com.atguigu.app.BaseSQLApp;
++import com.atguigu.common.Constant;
++import com.atguigu.util.SQLUtil;
++import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
++import org.apache.flink.table.api.Table;
++import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
++
++/**
++ * 车辆充电状态
++ *  charge_status = 1, 2, 4
++ */
++public class DwdElectricCharging extends BaseSQLApp {
++
++    public static void main(String[] args) {
++        new DwdElectricCharging().start(
++                10011,
++                2,
++                "DwdElectricCharging"
++        );
++    }
++
++    @Override
++    protected void handle(StreamExecutionEnvironment env, StreamTableEnvironment tEnv) {
++        readOdsLog(tEnv);
++
++        Table result = tEnv.sqlQuery(
++                "select " +
++                        "   vin, " +
++                        "   `timestamp`, " +
++                        "   voltage, " +
++                        "   electric_current, " +
++                        "   insulation_resistance " +
++                        "from ods_log " +
++                        "where charge_status = 1 " +
++                        "or charge_status = 2 " +
++                        "or charge_status = 4"
++        );
++
++        tEnv.executeSql("create table dwd_electric_charging(" +
++                "   vin string, " +
++                "   `timestamp` bigint, " +
++                "   voltage int, " +
++                "   electric_current int, " +
++                "   insulation_resistance bigint" +
++                ")" + SQLUtil.getKafkaDDLSink(Constant.TOPIC_DWD_ELECTRIC_CHARGING));
++
++        result.executeInsert("dwd_electric_charging");
++
++    }
++}
++
+Index: car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdElectricChargePile.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdElectricChargePile.java b/car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdElectricChargePile.java
+new file mode 100644
+--- /dev/null	(date 1690252662482)
++++ b/car2023-realtime/src/main/java/com/atguigu/app/dwd/DwdElectricChargePile.java	(date 1690252662482)
+@@ -0,0 +1,77 @@
++package com.atguigu.app.dwd;
++
++import com.atguigu.app.BaseSQLApp;
++import com.atguigu.common.Constant;
++import com.atguigu.util.SQLUtil;
++import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
++import org.apache.flink.table.api.Table;
++import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
++
++/**
++ *
++ * 充电桩充电车辆电池电压状态
++ *  1. 车辆状态必须是停下充电
++ *      car_status = 2
++ *  2. 充电状态是充电桩状态
++ *      charge_status = 1 or 4
++ *
++ */
++public class DwdElectricChargePile extends BaseSQLApp {
++
++    public static void main(String[] args) {
++        new DwdElectricChargePile().start(
++                30010,
++                2,
++                "DwdElectChargingPile"
++        );
++    }
++
++    @Override
++    protected void handle(StreamExecutionEnvironment env, StreamTableEnvironment tEnv) {
++
++        // 1 读取 ods_db 数据
++        readOdsLog(tEnv);
++
++        // 2 过滤出充电桩充电数据
++        Table result = tEnv.sqlQuery(
++                "select " +
++                        "   vin, " +
++                        "   `timestamp`, " +
++                        "   max_voltage_battery_pack_id, " +
++                        "   max_voltage_battery_id, " +
++                        "   max_voltage, " +
++                        "   min_temperature_subsystem_id, " +
++                        "   min_voltage_battery_id, " +
++                        "   min_voltage " +
++                        "from ods_log " +
++                        "where car_status=2 " +
++                        "and (charge_status=1 or charge_status=4) "
++        );
++
++        // 3 写出到 kafka 中
++        tEnv.executeSql("create table dwd_electric_charging_pile( " +
++                "   vin string, " +
++                "   `timestamp` bigint, " +
++                "   max_voltage_battery_pack_id int, " +
++                "   max_voltage_battery_id int, " +
++                "   max_voltage int, " +
++                "   min_temperature_subsystem_id int, " +
++                "   min_voltage_battery_id int, " +
++                "   min_voltage int " +
++                ")" + SQLUtil.getKafkaDDLSink(Constant.TOPIC_DWD_ELECTRIC_CHARGE_PILE));
++
++        result.executeInsert("dwd_electric_charging_pile");
++
++    }
++}
++
++
++/**
++ *
++ * 充电桩充电车辆电池电压状态
++ *  1. 车辆状态必须是停下充电
++ *      car_status = 2
++ *  2. 充电状态是充电桩状态
++ *      charge_status = 1 or 4
++ *
++ */
+\ No newline at end of file
+Index: car2023-realtime/src/main/java/com/atguigu/common/Constant.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.atguigu.common;\n\npublic class Constant {\n    public static final String KAFKA_BROKERS = \"hadoop162:9092,hadoop163:9092,hadoop164:9092\";\n    public static final String TOPIC_ODS_LOG = \"ods_log\";\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/car2023-realtime/src/main/java/com/atguigu/common/Constant.java b/car2023-realtime/src/main/java/com/atguigu/common/Constant.java
+--- a/car2023-realtime/src/main/java/com/atguigu/common/Constant.java	(revision c67a04762eed0a8172694e011a566d523200040c)
++++ b/car2023-realtime/src/main/java/com/atguigu/common/Constant.java	(date 1690253784492)
+@@ -3,4 +3,7 @@
+ public class Constant {
+     public static final String KAFKA_BROKERS = "hadoop162:9092,hadoop163:9092,hadoop164:9092";
+     public static final String TOPIC_ODS_LOG = "ods_log";
++    public static final String TOPIC_DWD_ELECTRIC_CHARGE_PILE = "dwd_electric_charge_pile";
++    public static final String TOPIC_DWD_ELECTRIC_CHARGING = "dwd_electric_charging";
++    public static final String TOPIC_DWD_ELECTRIC_DISCHARGING = "dwd_electric_discharging";
+ }
