@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96007084-2712-4f86-b850-1fa97f52d24d" name="Changes" comment="yeeka">
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4c6777d9-f2d3-4159-86b3-99a53d537833.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4c6777d9-f2d3-4159-86b3-99a53d537833/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4c6777d9-f2d3-4159-86b3-99a53d537833/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4c6777d9-f2d3-4159-86b3-99a53d537833/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4c6777d9-f2d3-4159-86b3-99a53d537833/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/af45b597-ed42-4913-9fd2-06151dba5427.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/af45b597-ed42-4913-9fd2-06151dba5427.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-realtime/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/BaseApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/BaseApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/dim/DimApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/dim/DimApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/dws/DwsEnergyChargeCycles.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/function/HBaseSinkFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/function/HBaseSinkFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/util/HBaseUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/util/HBaseUtil.java" afterDir="false" />
-    </list>
+    <list default="true" id="96007084-2712-4f86-b850-1fa97f52d24d" name="Changes" comment="yeeka" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -266,7 +250,7 @@
       <workItem from="1690202165639" duration="2466000" />
       <workItem from="1690204773413" duration="1453000" />
       <workItem from="1690245201224" duration="19458000" />
-      <workItem from="1690272053256" duration="192000" />
+      <workItem from="1690272053256" duration="572000" />
     </task>
     <task id="LOCAL-00001" summary="初始状态">
       <created>1690181840801</created>
@@ -331,7 +315,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690266960594</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="yeeka">
+      <created>1690272595281</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1690272595282</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
