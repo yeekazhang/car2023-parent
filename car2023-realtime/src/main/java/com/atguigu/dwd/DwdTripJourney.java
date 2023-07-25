@@ -23,7 +23,7 @@ public class DwdTripJourney extends BaseSQLApp {
                           StreamTableEnvironment tEnv) {
 
         //1.读取ods_db
-        readOdsDb(tEnv);
+        readOdsLog(tEnv);
 
         //2.过滤出行驶数据
         Table carTable = tEnv.sqlQuery(
@@ -46,7 +46,7 @@ public class DwdTripJourney extends BaseSQLApp {
 
 
 
-        tEnv.executeSql("create table  dwd_Running_journey (" +
+        tEnv.executeSql("create table  dwd_trip_journey (" +
                 "    vin string ," +
                 "    `timestamp` bigint," +
                 "    car_status  int," +
@@ -59,9 +59,9 @@ public class DwdTripJourney extends BaseSQLApp {
                 "    soc int," +
                 "    dc_status int," +
                 "    gear int " +
-                " )" + SQLUtil.getKafkaDDLSink("dwd_Running_journey")) ;
+                " )" + SQLUtil.getKafkaDDLSink("dwd_trip_journey")) ;
 
-        carTable.executeInsert("dwd_Running_journey");
+        carTable.executeInsert("dwd_trip_journey");
 
 
 

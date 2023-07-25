@@ -44,7 +44,7 @@ public abstract class BaseSQLApp {
 
     }
 
-   public static  void readOdsDb( StreamTableEnvironment tEnv){
+   public static  void readOdsLog( StreamTableEnvironment tEnv){
 
         tEnv.executeSql("create table ods_log ( " +
                 " `vin` string ," +
