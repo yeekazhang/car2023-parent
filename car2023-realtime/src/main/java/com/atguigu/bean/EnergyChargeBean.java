@@ -15,6 +15,11 @@ public class EnergyChargeBean {
 
     Integer  chargeCycles;
 
+    Integer  chargeSlowCycles;
+
+    Integer  chargeFastCycles;
+
+
     String  stt ;
 
     String  edt;
@@ -26,6 +31,9 @@ public class EnergyChargeBean {
 
     @JSONField(serialize = false)
     Integer charge_status  ;
+
+    @JSONField(serialize = false)
+    Integer  electric_current;
 
 
 }
