@@ -1,4 +1,4 @@
-package com.atguigu.dwd;
+package com.atguigu.app.dwd;
 
 
 import com.atguigu.app.BaseSQLApp;
