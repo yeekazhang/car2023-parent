@@ -20,7 +20,7 @@ public class DwdElectricChargePile extends BaseSQLApp {
 
     public static void main(String[] args) {
         new DwdElectricChargePile().start(
-                30010,
+                30003,
                 2,
                 "DwdElectChargingPile"
         );

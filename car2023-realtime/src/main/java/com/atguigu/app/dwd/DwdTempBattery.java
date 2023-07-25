@@ -62,7 +62,7 @@ public class DwdTempBattery extends BaseSQLApp {
                 "min_temperature_subsystem_id  int ," +
                 "min_temperature_probe_id  int ," +
                 "min_temperature  int  " +
-                ")" + SQLUtil.getKafkaDDLSink(Constant.topic_dwd_temp_battery));
+                ")" + SQLUtil.getKafkaDDLSink(Constant.TOPIC_DWD_TEMP_BATTERY));
 
         result.executeInsert("dwd_temp_battery");
 

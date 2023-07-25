@@ -11,4 +11,9 @@ public class Constant {
     public static final String MYSQL_USER_NAME = "root";
     public static final String MYSQL_PASSWORD = "aaaaaa";
     public static final String HBASE_NAMESPACE = "car";
+    public static final String TOPIC_DWD_TEMP_MOTOR = "dwd_temp_motor";
+    public static final String TOPIC_DWD_ENERGY_CHARGE = "dwd_energy_charge";
+    public static final String TOPIC_DWD_ALERT_WARN = "dwd_alert_warn";
+    public static final String TOPIC_DWD_TEMP_BATTERY = "dwd_temp_battery";
+    public static final String TOPIC_DWD_TRIP_JOURNEY = "dwd_trip_journey";
 }

@@ -15,7 +15,7 @@ public class DwdElectricCharging extends BaseSQLApp {
 
     public static void main(String[] args) {
         new DwdElectricCharging().start(
-                10011,
+                30004,
                 2,
                 "DwdElectricCharging"
         );
