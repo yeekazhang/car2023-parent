@@ -1,6 +1,7 @@
 package com.atguigu.app.dwd;
 
 import com.atguigu.app.BaseSQLApp;
+import com.atguigu.common.Constant;
 import com.atguigu.util.SQLUtil;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.Table;
@@ -57,7 +58,7 @@ public class DwdEnergyCharge extends BaseSQLApp {
                 " `dc_status` int ," +
                 "  gear int ," +
                 "  insulation_resistance int " +
-                ")" + SQLUtil.getKafkaDDLSink("dwd_energy_charge"));
+                ")" + SQLUtil.getKafkaDDLSink(Constant.TOPIC_DWD_ENERGY_CHARGE));
 
 
         //3.写到kafka
