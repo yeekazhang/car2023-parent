@@ -58,11 +58,4 @@ public class DateFormatUtil {
         return dateTimeToTs(date + " 00:00:00");
     }
 
-    public static void main(String[] args) {
-        long ts = dateTimeToTs("2023-07-13 00:00:00");
-        long a = dateToTs("2023-07-11");
-
-        System.out.println((ts - a) / 1000 / 60 / 60 / 24);
-    }
-
 }
