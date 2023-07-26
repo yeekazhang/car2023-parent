@@ -105,7 +105,7 @@ public abstract class BaseSQLApp {
                 "  min_temperature_subsystem_id  int ," +
                 "  min_temperature_probe_id  int ," +
                 "  min_temperature  int  " +
-                " )"+ SQLUtil.getKafkaSource(Constant.TOPIC_ODS_LOG,"kafka"));
+                " )"+ SQLUtil.getKafkaSource(Constant.TOPIC_ODS_LOG,"kafka-source"));
    }
 
     public static  void readBaseDic(StreamTableEnvironment tEnv){

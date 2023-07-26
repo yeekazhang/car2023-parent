@@ -45,7 +45,7 @@ public class SugarController {
         JSONArray series = new JSONArray();
 
         JSONObject obj = new JSONObject();
-        obj.put("name", "告警次数");
+        obj.put("name", "告警等级");
         JSONArray innerData = new JSONArray();
         for (AS as : list) {
             innerData.add(as.getAlert_ct());

@@ -4,24 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96007084-2712-4f86-b850-1fa97f52d24d" name="Changes" comment="yeeka">
-      <change afterPath="$PROJECT_DIR$/car2023-sugar/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car2023-sugar/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car2023-sugar/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car2023-sugar/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car2023-sugar/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car2023-sugar/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/Car2023SugarApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/bean/AS.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/controller/SugarController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/mapper/AlertMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/service/AlertService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/service/AlertServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car2023-sugar/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car2023-sugar/src/test/java/com/atguigu/car2023sugar/Car2023SugarApplicationTests.java" afterDir="false" />
+    <list default="true" id="96007084-2712-4f86-b850-1fa97f52d24d" name="Changes" comment="sugar">
+      <change afterPath="$PROJECT_DIR$/car2023-sugar/src/main/resources/static/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/BaseSQLApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/BaseSQLApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/Car2023SugarApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/Car2023SugarApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/controller/SugarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/controller/SugarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/mapper/AlertMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/mapper/AlertMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car2023-sugar/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-sugar/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +60,10 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -81,7 +76,7 @@
     "deletionFromPopupRequiresConfirmation": "false",
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "1.8",
-    "last_opened_file_path": "/Users/yeeka/station/workspace/car2023-parent/car2023-realtime/src/main/resources",
+    "last_opened_file_path": "/Users/yeeka/station/workspace/car2023-parent/car2023-sugar/src/main/resources/static",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -90,7 +85,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
+    "settings.editor.selected.configurable": "SQL Dialects",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -107,13 +102,14 @@
       <recent name="com.atguigu.common" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/car2023-sugar/src/main/resources/static" />
       <recent name="$PROJECT_DIR$/car2023-realtime/src/main/resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.atguigu.app.dwd" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DwdAlertWarn">
+  <component name="RunManager" selected="Spring Boot.Car2023SugarApplication">
     <configuration name="DwdAlertWarn" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
@@ -134,10 +130,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DwdTempBattery" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="DwdElectricChargePile" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dwd.DwdTempBattery" />
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dwd.DwdElectricChargePile" />
       <module name="car2023-realtime" />
       <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
       <target name="@@@LOCAL@@@" />
@@ -174,10 +170,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DwsTempBatteryTemperatureControlWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="DwsAlertAlertCountWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dws.DwsTempBatteryTemperatureControlWindow" />
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dws.DwsAlertAlertCountWindow" />
       <module name="car2023-realtime" />
       <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
       <target name="@@@LOCAL@@@" />
@@ -252,11 +248,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.DwsAlertAlertCountWindow" />
         <item itemvalue="Application.DwdAlertWarn" />
+        <item itemvalue="Application.DwdElectricChargePile" />
         <item itemvalue="Application.DwsTempMotorTemperatureControlWindow" />
         <item itemvalue="Application.DwdTempMotor" />
-        <item itemvalue="Application.DwdTempBattery" />
-        <item itemvalue="Application.DwsTempBatteryTemperatureControlWindow" />
       </list>
     </recent_temporary>
   </component>
@@ -286,7 +282,7 @@
       <workItem from="1690202165639" duration="2466000" />
       <workItem from="1690204773413" duration="1453000" />
       <workItem from="1690245201224" duration="19458000" />
-      <workItem from="1690272053256" duration="41138000" />
+      <workItem from="1690272053256" duration="44412000" />
     </task>
     <task id="LOCAL-00001" summary="初始状态">
       <created>1690181840801</created>
@@ -407,7 +403,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690356424843</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="sugar">
+      <created>1690364186040</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1690364186040</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -444,7 +447,8 @@
     <MESSAGE value="yeeka dws层完成" />
     <MESSAGE value="yeeka 修改成electric" />
     <MESSAGE value="yeeka" />
-    <option name="LAST_COMMIT_MESSAGE" value="yeeka" />
+    <MESSAGE value="sugar" />
+    <option name="LAST_COMMIT_MESSAGE" value="sugar" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

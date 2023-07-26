@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface AlertMapper {
 
-    @Select("select alert_level, sum(alert_ct) from dws_alert_alert_count partition(par20230726) group by alert_level")
+    @Select("select alert_level, sum(alert_ct) alert_ct  from dws_alert_alert_count partition(par${date}) group by alert_level order by alert_level")
     List<AS> alertSumByLevel(String date);
 
 }
