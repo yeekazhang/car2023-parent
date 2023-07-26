@@ -37,19 +37,5 @@ public class ElectricBatteryBean {
     @JSONField(serialize = false)
     Integer minVoltage = 0;
 
-    public static void main(String[] args) {
-
-        ElectricBatteryBean electricBatteryBean = new ElectricBatteryBean();
-        System.out.println(electricBatteryBean);
-
-        String n = null ;
-       if( n.equals("cc") ){
-
-       }
-        System.out.println(n);
-
-    }
-
-
 
 }
