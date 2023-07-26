@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96007084-2712-4f86-b850-1fa97f52d24d" name="Changes" comment="yeeka">
-      <change afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/dws/DwsAlertAlertCount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/bean/AlertCountBean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/dws/DwsTempBatteryTemperatureControlWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/bean/BatteryTemperatureControlBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/util/DateFormatUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/util/DateFormatUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/dws/DwsAlertAlertCount.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/dws/DwsAlertAlertCountWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/dws/DwsEnergyChargeCyclesWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/dws/DwsEnergyChargeCyclesWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,67 +101,7 @@
       <recent name="com.atguigu.app.dwd" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DwsAlertAlertCount">
-    <configuration name="DateFormatUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.util.DateFormatUtil" />
-      <module name="car2023-realtime" />
-      <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
-      <target name="@@@LOCAL@@@" />
-      <selectedOptions>
-        <option name="target.project.path" />
-      </selectedOptions>
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.atguigu.util.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DimApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dim.DimApp" />
-      <module name="car2023-realtime" />
-      <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
-      <target name="@@@LOCAL@@@" />
-      <selectedOptions>
-        <option name="target.project.path" />
-      </selectedOptions>
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.atguigu.app.dim.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DimAppYeeka" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dim.DimAppYeeka" />
-      <module name="car2023-realtime" />
-      <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
-      <target name="@@@LOCAL@@@" />
-      <selectedOptions>
-        <option name="target.project.path" />
-      </selectedOptions>
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.atguigu.app.dim.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.DwdTempBattery">
     <configuration name="DwdAlertWarn" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
@@ -179,10 +122,70 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DwsAlertAlertCount" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="DwdTempBattery" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dws.DwsAlertAlertCount" />
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dwd.DwdTempBattery" />
+      <module name="car2023-realtime" />
+      <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
+      <target name="@@@LOCAL@@@" />
+      <selectedOptions>
+        <option name="target.project.path" />
+      </selectedOptions>
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.app.dwd.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DwdTempMotor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dwd.DwdTempMotor" />
+      <module name="car2023-realtime" />
+      <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
+      <target name="@@@LOCAL@@@" />
+      <selectedOptions>
+        <option name="target.project.path" />
+      </selectedOptions>
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.app.dwd.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DwsAlertAlertCountWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dws.DwsAlertAlertCountWindow" />
+      <module name="car2023-realtime" />
+      <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
+      <target name="@@@LOCAL@@@" />
+      <selectedOptions>
+        <option name="target.project.path" />
+      </selectedOptions>
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.app.dws.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DwsTempBatteryTemperatureControlWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dws.DwsTempBatteryTemperatureControlWindow" />
       <module name="car2023-realtime" />
       <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
       <target name="@@@LOCAL@@@" />
@@ -223,11 +226,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DwsAlertAlertCount" />
-        <item itemvalue="Application.DateFormatUtil" />
+        <item itemvalue="Application.DwdTempBattery" />
+        <item itemvalue="Application.DwsTempBatteryTemperatureControlWindow" />
+        <item itemvalue="Application.DwdTempMotor" />
+        <item itemvalue="Application.DwsAlertAlertCountWindow" />
         <item itemvalue="Application.DwdAlertWarn" />
-        <item itemvalue="Application.DimApp" />
-        <item itemvalue="Application.DimAppYeeka" />
       </list>
     </recent_temporary>
   </component>
@@ -257,7 +260,7 @@
       <workItem from="1690202165639" duration="2466000" />
       <workItem from="1690204773413" duration="1453000" />
       <workItem from="1690245201224" duration="19458000" />
-      <workItem from="1690272053256" duration="11244000" />
+      <workItem from="1690272053256" duration="22205000" />
     </task>
     <task id="LOCAL-00001" summary="初始状态">
       <created>1690181840801</created>
@@ -336,7 +339,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690272778638</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="yeeka">
+      <created>1690285721535</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1690285721535</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

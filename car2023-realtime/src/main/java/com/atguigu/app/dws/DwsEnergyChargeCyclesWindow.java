@@ -28,7 +28,7 @@ public class DwsEnergyChargeCyclesWindow  extends BaseApp {
 
     public static void main(String[] args) {
         new DwsEnergyChargeCyclesWindow().start(
-                40020,
+                40002,
                 2,
                 "DwsEnergyChargeCycles",
                 Constant.TOPIC_DWD_ENERGY_CHARGE
