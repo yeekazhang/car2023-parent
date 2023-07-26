@@ -24,12 +24,12 @@ import java.time.Duration;
 /**
  * 车辆充电平均电压电流电阻提统计
  */
-public class DwsElectCarChargeAvgVol extends BaseApp {
+public class DwsElectricCarChargeAvgVol extends BaseApp {
     public static void main(String[] args) {
-        new DwsElectCarChargeAvgVol().start(
+        new DwsElectricCarChargeAvgVol().start(
             40011,
             2,
-            "DwsElectCarChargeAvgVol",
+            "DwsElectricCarChargeAvgVol",
             Constant.TOPIC_DWD_ELECTRIC_CHARGING
         );
     }
