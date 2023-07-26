@@ -27,22 +27,13 @@ public class MotorTemperatureControlBean {
     // 控制器最高温度
     Integer controlMaxTemperature;
 
-    // 电机平均温度
-    Long motorAvgTemperature;
-
-    // 控制器平均温度
-    Long controlAvgTemperature;
-
-    // 电机温度累计值
-    @JSONField(serialize = false)
+    // 电机累计温度
     Long motorAccTemperature;
 
-    // 控制器温度累计值
-    @JSONField(serialize = false)
+    // 控制器累计温度
     Long controlAccTemperature;
 
-    // 电机数量累计值
-    @JSONField(serialize = false)
+    // 电机累计数量
     Long motorAccCt;
 
     // 时间戳

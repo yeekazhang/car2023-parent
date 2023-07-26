@@ -40,7 +40,8 @@ public class DwsTempMotorTemperatureControlWindow extends BaseApp {
         // 1 转化为Pojo
         SingleOutputStreamOperator<MotorTemperatureControlBean> beanStream = parseToPojo(stream);
 
-        // 2 开窗并聚合
+
+        // 2 开窗和聚合
         SingleOutputStreamOperator<MotorTemperatureControlBean> resultStream = windowAndAgg(beanStream);
 
         // 3 写出到doris
@@ -48,18 +49,12 @@ public class DwsTempMotorTemperatureControlWindow extends BaseApp {
 
     }
 
-    private void writeToDoris(SingleOutputStreamOperator<MotorTemperatureControlBean> resultStream) {
-        resultStream
-                .map(new DorisMapFunction<>())
-                .sinkTo(FlinkSinkUtil.getDorisSink("car.dws_temp_motor_temperature_control"));
-    }
-
     private SingleOutputStreamOperator<MotorTemperatureControlBean> windowAndAgg(SingleOutputStreamOperator<MotorTemperatureControlBean> beanStream) {
         return beanStream
                 .assignTimestampsAndWatermarks(
                         WatermarkStrategy
-                                .<MotorTemperatureControlBean>forBoundedOutOfOrderness(Duration.ofMinutes(20))
-                                .withTimestampAssigner((bean, ts) -> bean.getTs())
+                                .<MotorTemperatureControlBean>forBoundedOutOfOrderness(Duration.ofMinutes(10))
+                                .withTimestampAssigner((bean,ts) -> bean.getTs())
                                 .withIdleness(Duration.ofMinutes(300))
                 )
                 .keyBy(MotorTemperatureControlBean::getVin)
@@ -70,7 +65,7 @@ public class DwsTempMotorTemperatureControlWindow extends BaseApp {
                             public MotorTemperatureControlBean reduce(MotorTemperatureControlBean value1, MotorTemperatureControlBean value2) throws Exception {
                                 value1.setMotorMaxTemperature(value1.getMotorMaxTemperature() > value2.getMotorMaxTemperature() ? value1.getMotorMaxTemperature() : value2.getMotorMaxTemperature());
                                 value1.setControlMaxTemperature(value1.getControlMaxTemperature() > value2.getControlMaxTemperature() ? value1.getControlMaxTemperature() : value2.getControlMaxTemperature());
-                                value1.setMotorAccTemperature(value1.getMotorAccTemperature() + value2.getControlAccTemperature());
+                                value1.setMotorAccTemperature(value1.getMotorAccTemperature() + value2.getMotorAccTemperature());
                                 value1.setControlAccTemperature(value1.getControlAccTemperature() + value2.getControlAccTemperature());
                                 value1.setMotorAccCt(value1.getMotorAccCt() + value2.getMotorAccCt());
                                 return value1;
@@ -79,16 +74,26 @@ public class DwsTempMotorTemperatureControlWindow extends BaseApp {
                             @Override
                             public void process(String key, Context ctx, Iterable<MotorTemperatureControlBean> elements, Collector<MotorTemperatureControlBean> out) throws Exception {
                                 MotorTemperatureControlBean bean = elements.iterator().next();
-                                bean.setMotorAvgTemperature(bean.getMotorAccTemperature() / bean.getMotorAccCt());
-                                bean.setControlAvgTemperature(bean.getControlAccTemperature() / bean.getMotorAccCt());
+
                                 bean.setStt(DateFormatUtil.tsToDateTime(ctx.window().getStart()));
                                 bean.setEdt(DateFormatUtil.tsToDateTime(ctx.window().getEnd()));
                                 bean.setCurDate(DateFormatUtil.tsToDateForPartition(ctx.window().getStart()));
+
                                 out.collect(bean);
                             }
                         }
                 );
     }
+
+    private void writeToDoris(SingleOutputStreamOperator<MotorTemperatureControlBean> resultStream) {
+        resultStream
+                .map(new DorisMapFunction<>())
+                .sinkTo(FlinkSinkUtil.getDorisSink("car.dws_temp_motor_temperature_control"));
+    }
+
+
+
+
 
     private SingleOutputStreamOperator<MotorTemperatureControlBean> parseToPojo(DataStreamSource<String> stream) {
         return stream
@@ -118,9 +123,8 @@ public class DwsTempMotorTemperatureControlWindow extends BaseApp {
                         return new MotorTemperatureControlBean(
                                 "", "", "",
                                 vin,
-                                motorMaxTemperature, controlMaxTemperature,
-                                0L, 0L,
-                                motorAccTemperature, controlAccTemperature,
+                                motorMaxTemperature,controlMaxTemperature,
+                                motorAccTemperature,controlAccTemperature,
                                 2L,
                                 ts
                         );
