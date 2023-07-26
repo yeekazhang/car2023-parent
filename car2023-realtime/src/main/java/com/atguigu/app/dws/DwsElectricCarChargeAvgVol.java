@@ -5,6 +5,7 @@ import com.atguigu.app.BaseApp;
 import com.atguigu.bean.CarChargeAndDisChargeAvgBean;
 import com.atguigu.common.Constant;
 import com.atguigu.function.DorisMapFunction;
+import com.atguigu.function.MapDimFunction;
 import com.atguigu.util.DateFormatUtil;
 import com.atguigu.util.FlinkSinkUtil;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
@@ -41,9 +42,42 @@ public class DwsElectricCarChargeAvgVol extends BaseApp {
 
         // 2. 开窗聚合
         SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> result = windowAndAgg(beanStream);
-        // 3. 写出到 doris 中
 
-        writeToDoris(result);
+
+
+
+
+
+        // 2.5 补充维度
+        result.map(new MapDimFunction<CarChargeAndDisChargeAvgBean>() {
+                @Override
+                public String getRowKey(CarChargeAndDisChargeAvgBean bean) {
+                    return bean.getVin();
+                }
+
+                @Override
+                public String getTable() {
+                    return "dim_car_info";
+                }
+
+                @Override
+                public void addDims(CarChargeAndDisChargeAvgBean bean, JSONObject dim) {
+                    bean.setCategory(dim.getString("category"));
+                    bean.setTrademark(dim.getString("trademark"));
+                    bean.setType(dim.getString("type"));
+                }
+            })
+            .print();
+
+
+
+
+
+
+
+
+        // 3. 写出到 doris 中
+       // writeToDoris(result);
     }
 
     private void writeToDoris(SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> result) {
@@ -106,10 +140,15 @@ public class DwsElectricCarChargeAvgVol extends BaseApp {
                     Long voltage = value.getLong("voltage");
                     Long electricCurrent = value.getLong("electric_current");
                     Long insulationResistance = value.getLong("insulation_resistance");
-                    out.collect(new CarChargeAndDisChargeAvgBean(
-                        "","","",
-                        vin,voltage,electricCurrent,insulationResistance,
-                        1L,ts));
+
+                    out.collect(CarChargeAndDisChargeAvgBean.builder()
+                            .vin(vin)
+                            .ts(ts)
+                            .totalVol(voltage)
+                            .totalElectricCurrent(electricCurrent)
+                            .totalInsulationResistance(insulationResistance)
+                            .num(1L)
+                            .build());
                 }
             });
     }

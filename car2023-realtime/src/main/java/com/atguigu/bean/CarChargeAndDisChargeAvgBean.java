@@ -2,12 +2,14 @@ package com.atguigu.bean;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 public class CarChargeAndDisChargeAvgBean {
     // 窗口起始时间
     private String stt;
@@ -36,4 +38,15 @@ public class CarChargeAndDisChargeAvgBean {
     // 时间戳
     @JSONField(serialize = false)  // 要不要序列化这个字段
     private Long ts;
+
+
+    // 车型
+    @JSONField(serialize = false)  // 要不要序列化这个字段
+    private String type;
+    // 品牌
+    @JSONField(serialize = false)  // 要不要序列化这个字段
+    private String trademark;
+    //车辆分类
+    @JSONField(serialize = false)  // 要不要序列化这个字段
+    private String category;
 }

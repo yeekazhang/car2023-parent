@@ -1,13 +1,17 @@
 package com.atguigu.util;
 
 import com.alibaba.fastjson.JSONObject;
+import com.atguigu.common.Constant;
 import org.apache.hadoop.conf.Configuration;
 
+import org.apache.hadoop.hbase.Cell;
+import org.apache.hadoop.hbase.CellUtil;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 
 import java.io.IOException;
+import java.util.List;
 
 public class HBaseUtil {
     public static Connection getHBaseConnection() throws IOException {
@@ -82,5 +86,28 @@ public class HBaseUtil {
         // 删除整行
         t.delete(delete);
         t.close();
+    }
+
+    public static JSONObject getRow(Connection conn, String nameSpace, String table, String rowKey) {
+
+
+        try (Table carInfoTable = conn.getTable(TableName.valueOf(nameSpace, table))){
+
+            Get get = new Get(Bytes.toBytes(rowKey));
+            Result result = carInfoTable.get(get);
+            List<Cell> cells = result.listCells();
+            JSONObject obj = new JSONObject();
+            for (Cell cell : cells) {
+                //取出的没列的列名，
+                String key = Bytes.toString(CellUtil.cloneQualifier(cell));
+                String value = Bytes.toString(CellUtil.cloneValue(cell));
+                obj.put(key, value);
+            }
+            return obj;
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
