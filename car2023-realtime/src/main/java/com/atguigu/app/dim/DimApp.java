@@ -45,10 +45,10 @@ public class DimApp extends BaseApp {
             createHBaseTable();
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
+        }*/
         //3. 写到Hbase中
         writeToHbase(streams);
-*/
+
 
 
 

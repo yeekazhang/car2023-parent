@@ -56,7 +56,7 @@ public class DwsElectricCarChargeAvgVol extends BaseApp {
                 }
 
                 @Override
-                public String getTable() {
+                public String getTableName() {
                     return "dim_car_info";
                 }
 

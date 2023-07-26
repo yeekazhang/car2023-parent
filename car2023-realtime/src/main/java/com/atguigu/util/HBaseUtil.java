@@ -2,6 +2,8 @@ package com.atguigu.util;
 
 import com.alibaba.fastjson.JSONObject;
 import com.atguigu.common.Constant;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.flink.shaded.guava30.com.google.common.base.CaseFormat;
 import org.apache.hadoop.conf.Configuration;
 
 import org.apache.hadoop.hbase.Cell;
@@ -88,24 +90,37 @@ public class HBaseUtil {
         t.close();
     }
 
-    public static JSONObject getRow(Connection conn, String nameSpace, String table, String rowKey) {
+    public static <T> T getRow(Connection conn,
+                                    String nameSpace,
+                                    String table,
+                                    String rowKey,
+                                    Class<T> tClass,
+                               boolean... isUnderlineToCamel) {
+        boolean defaultIsUToC = false;  // 默认不执行下划线转驼峰
 
+        if (isUnderlineToCamel.length > 0) {
+            defaultIsUToC = isUnderlineToCamel[0];
+        }
 
         try (Table carInfoTable = conn.getTable(TableName.valueOf(nameSpace, table))){
 
             Get get = new Get(Bytes.toBytes(rowKey));
             Result result = carInfoTable.get(get);
             List<Cell> cells = result.listCells();
-            JSONObject obj = new JSONObject();
+
+            T t = tClass.newInstance();
             for (Cell cell : cells) {
                 //取出的没列的列名，
                 String key = Bytes.toString(CellUtil.cloneQualifier(cell));
+                if (defaultIsUToC) { // 需要下划线转驼峰:  a_a => aA a_aaaa_aa => aAaaaAa
+                    key = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, key);
+                }
                 String value = Bytes.toString(CellUtil.cloneValue(cell));
-                obj.put(key, value);
+                BeanUtils.setProperty(t, key, value);
             }
-            return obj;
+            return t;
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
