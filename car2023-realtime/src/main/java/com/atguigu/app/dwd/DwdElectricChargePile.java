@@ -32,7 +32,7 @@ public class DwdElectricChargePile extends BaseSQLApp {
         // 1 读取 ods_db 数据
         readOdsLog(tEnv);
 
-        // 2 过滤出充电桩充电数据
+        // 2 过滤出电池状态数据
         Table result = tEnv.sqlQuery(
                 "select " +
                         "   vin, " +
@@ -43,10 +43,8 @@ public class DwdElectricChargePile extends BaseSQLApp {
                         "   min_temperature_subsystem_id, " +
                         "   min_voltage_battery_id, " +
                         "   min_voltage " +
-                        "from ods_log " +
-                        "where car_status=2 " +
-                        "and (charge_status=1 or charge_status=4) "
-        );
+                        "from ods_log " );
+
 
         // 3 写出到 kafka 中
         tEnv.executeSql("create table dwd_electric_charging_pile( " +
