@@ -136,9 +136,9 @@ public class DwsElectricBatteryWindow extends BaseApp {
 
 
                     }
-                }).print();
-                /*.map(new DorisMapFunction<>())
-                .sinkTo(FlinkSinkUtil.getDorisSink("car.dws_electric_battery_window"));*/
+                })
+                .map(new DorisMapFunction<>())
+                .sinkTo(FlinkSinkUtil.getDorisSink("car.dws_electric_battery_window"));
 
   }
 }

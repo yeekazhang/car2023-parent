@@ -24,7 +24,7 @@ public class DwdEnergyCharge extends BaseSQLApp {
 
         readOdsLog(tEnv);
 
-        //2.过滤出充电的数据
+        //2.所有充电的数据
 
         Table result = tEnv.sqlQuery("select  " +
                 " `vin`  ," +

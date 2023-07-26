@@ -51,9 +51,8 @@ public class DwsEnergyChargeCyclesWindow  extends BaseApp {
         //2.开窗聚合
         SingleOutputStreamOperator<EnergyChargeBean> resultStream = windowAndAgg(beanStream);
 
-        resultStream.print();
 
-        /*writeToDoris(resultStream);*/
+        writeToDoris(resultStream);
 
 
     }

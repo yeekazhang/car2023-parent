@@ -31,7 +31,6 @@ public class ElectricBatteryBean {
     @JSONField(serialize = false)
     Long timestamp ;
 
-    @JSONField(serialize = false)
     Integer maxVoltage;
     @Builder.Default
     @JSONField(serialize = false)
