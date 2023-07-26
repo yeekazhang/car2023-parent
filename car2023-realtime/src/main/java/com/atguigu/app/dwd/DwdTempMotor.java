@@ -31,7 +31,9 @@ public class DwdTempMotor extends BaseSQLApp {
                 " `timestamp`  ," +
                 " motor_count  ," +
                 " motor_list " +
-                "from  ods_log ");
+                "from  ods_log " +
+                " where  car_status = 1");
+
         tEnv.executeSql("create table dwd_temp_motor (" +
                 " `vin` string  ," +
                 " `timestamp` bigint  ," +

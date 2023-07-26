@@ -9,13 +9,14 @@ import com.atguigu.util.DateFormatUtil;
 import com.atguigu.util.FlinkSinkUtil;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.ReduceFunction;
+import org.apache.flink.api.common.state.StateTtlConfig;
 import org.apache.flink.api.common.state.ValueState;
 import org.apache.flink.api.common.state.ValueStateDescriptor;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.api.functions.ProcessFunction;
+import org.apache.flink.streaming.api.functions.KeyedProcessFunction;
 import org.apache.flink.streaming.api.functions.windowing.ProcessWindowFunction;
 import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
@@ -50,7 +51,9 @@ public class DwsEnergyChargeCyclesWindow  extends BaseApp {
         //2.开窗聚合
         SingleOutputStreamOperator<EnergyChargeBean> resultStream = windowAndAgg(beanStream);
 
-        writeToDoris(resultStream);
+        resultStream.print();
+
+        /*writeToDoris(resultStream);*/
 
 
     }
@@ -109,21 +112,23 @@ public class DwsEnergyChargeCyclesWindow  extends BaseApp {
                 .map(JSONObject::parseObject)
                .keyBy(obj -> obj.getString("vin"))
 
-                .process(new ProcessFunction<JSONObject, EnergyChargeBean>() {
-
+                .process(new KeyedProcessFunction<String, JSONObject, EnergyChargeBean>() {
                     private ValueState<Boolean> isOnceState;
-
                     @Override
                     public void open(Configuration parameters) throws Exception {
                         ValueStateDescriptor<Boolean> desc = new ValueStateDescriptor<Boolean>("isOnce",Boolean.class);
-                        isOnceState = getRuntimeContext().getState(desc);
+                        StateTtlConfig conf = StateTtlConfig.newBuilder(org.apache.flink.api.common.time.Time.seconds(60 * 30))
+                                .setStateVisibility(StateTtlConfig.StateVisibility.NeverReturnExpired)
+                                .setUpdateType(StateTtlConfig.UpdateType.OnCreateAndWrite)
+                                        .build();
 
+                        desc.enableTimeToLive(conf);
+                        isOnceState = getRuntimeContext().getState(desc);
                     }
 
                     @Override
-                    public void processElement(JSONObject obj,
-                                               Context ctx,
-                                               Collector<EnergyChargeBean> out) throws Exception {
+                    public void processElement(JSONObject obj, KeyedProcessFunction<String, JSONObject, EnergyChargeBean>.Context ctx, Collector<EnergyChargeBean> out) throws Exception {
+
                         String vin = obj.getString("vin");
                         Integer charge_status = obj.getInteger("charge_status");
                         Integer electricCurrent = obj.getInteger("electric_current");
@@ -133,29 +138,34 @@ public class DwsEnergyChargeCyclesWindow  extends BaseApp {
                         Integer chargeFastCycles = 0;
                         Boolean isOnceStateValue  = isOnceState.value();
 
-                       if( isOnceStateValue == null || isOnceStateValue ) {
+                        if( isOnceStateValue == null || isOnceStateValue ) {
 
-                           if (charge_status == 1 || charge_status == 2) {
-                               chargeCycles = 1;
-                               if(electricCurrent > 180 ){
-                                   chargeFastCycles = 1;
-                               }else{
-                                   chargeSlowCycles = 1;
-                               }
-                               isOnceState.update(false);
+                            if (charge_status == 1 || charge_status == 2) {
+                                chargeCycles = 1;
+                                if(electricCurrent > 180 ){
+                                    chargeFastCycles = 1;
+                                }else{
+                                    chargeSlowCycles = 1;
+                                }
+                                isOnceState.update(false);
 
-                           }
-                       }
+                            }
+                        }
 
-                       if(charge_status == 3 ||  charge_status == 4){
-                           isOnceState.update(true);
-                       }
+                        if(charge_status == 3 ||  charge_status == 4){
+                            isOnceState.update(true);
+                        }
 
 
-                        out.collect(new EnergyChargeBean(vin,chargeCycles,chargeSlowCycles,chargeFastCycles,"","","",timestamp,charge_status,electricCurrent));
+                        out.collect(new EnergyChargeBean(vin,chargeCycles,chargeSlowCycles,chargeFastCycles,
+                                "","","",timestamp,charge_status,electricCurrent));
+
                     }
                 });
 
 
     }
 }
+
+
+

@@ -6,36 +6,34 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ElectricBatteryBean {
+public class AcceleratorAggBean {
 
-    String stt;
+    String  stt;
 
-    String edt;
+    String  edt;
 
-    String curDate;
+    String  curDate;
 
-
-    String vin;
-
-
+    String  vin;
     @Builder.Default
-    Integer batteryMaxDiffVoltage =0;
+    Double sumElectric = 0.0;
     @Builder.Default
-    Integer batteryVoltageWarnTimes =0;
-
+    Integer electricCount =0;
 
     @JSONField(serialize = false)
-    Long timestamp ;
+    Long  timestamp;
 
     @JSONField(serialize = false)
-    Integer maxVoltage;
-    @Builder.Default
-    @JSONField(serialize = false)
-    Integer minVoltage = 0;
+    Double  electricCurrent;
+
+
+
 
 
 }
