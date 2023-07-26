@@ -20,29 +20,29 @@ public class FlinkSinkUtil {
     }
 
     public static DorisSink<String> getDorisSink(String table) {
-        Properties properties = new Properties();
-        properties.setProperty("format","json");
-        properties.setProperty("read_json_by_line","true");
-
+        Properties props = new Properties();
+        props.setProperty("format", "json");
+        props.setProperty("read_json_by_line", "true"); // 每行一条 json 数据
         return DorisSink.<String>builder()
-                .setDorisReadOptions(DorisReadOptions.builder().build())
-                .setDorisOptions(DorisOptions.builder()
-                        .setFenodes(Constant.DORIS_FE_NODE)
-                        .setTableIdentifier(table)
-                        .setUsername("root")
-                        .setPassword("aaaaaa")
-                        .build()
-                        )
-                .setDorisExecutionOptions(DorisExecutionOptions.builder()
-                        .setLabelPrefix("a")
-                        .disable2PC()
-                        .setBufferCount(3)
-                        .setBufferSize(1024*1024)
-                        .setCheckInterval(3000)
-                        .setMaxRetries(3)
-                        .setStreamLoadProp(properties)
-                        .build())
-                .setSerializer(new SimpleStringSerializer())
-                .build();
+            .setDorisReadOptions(DorisReadOptions.builder().build())
+            .setDorisOptions(DorisOptions.builder()
+                .setFenodes(Constant.DORIS_FE_NODE)
+                .setTableIdentifier(table)
+                .setUsername("root")
+                .setPassword("aaaaaa")
+                .build()
+            )
+            .setDorisExecutionOptions(DorisExecutionOptions.builder()
+                .setLabelPrefix("a")
+                .disable2PC()  // 禁用两阶段提交: 如果不禁用LabelPrefix必须全局唯一
+                .setBufferCount(3)
+                .setBufferSize(1024 * 1024)
+                .setCheckInterval(3000)
+                .setMaxRetries(3)
+                .setStreamLoadProp(props)
+                .build())
+            .setSerializer(new SimpleStringSerializer())
+            .build();
+
     }
 }
