@@ -22,15 +22,15 @@ import org.apache.flink.util.Collector;
 import java.time.Duration;
 
 /**
- * 车辆放电平均电压电流电阻统计
+ * 车辆充电平均电压电流电阻提统计
  */
-public class DwsElectCarDisChargingAvgVol extends BaseApp {
+public class DwsElectCarChargeAvgVol extends BaseApp {
     public static void main(String[] args) {
-        new DwsElectCarDisChargingAvgVol().start(
-            40010,
+        new DwsElectCarChargeAvgVol().start(
+            40011,
             2,
-            "DwsElectCarDisChargingAvgVol",
-            Constant.TOPIC_DWD_ELECTRIC_DISCHARGING
+            "DwsElectCarChargeAvgVol",
+            Constant.TOPIC_DWD_ELECTRIC_CHARGING
         );
     }
 
@@ -49,7 +49,7 @@ public class DwsElectCarDisChargingAvgVol extends BaseApp {
     private void writeToDoris(SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> result) {
         result
             .map(new DorisMapFunction<>())
-            .sinkTo(FlinkSinkUtil.getDorisSink("car_db.dws_car_discharge_avg"));
+            .sinkTo(FlinkSinkUtil.getDorisSink("car_db.dws_car_charge_avg"));
     }
 
     private SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> windowAndAgg(SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> beanStream) {
@@ -106,7 +106,6 @@ public class DwsElectCarDisChargingAvgVol extends BaseApp {
                     Long voltage = value.getLong("voltage");
                     Long electricCurrent = value.getLong("electric_current");
                     Long insulationResistance = value.getLong("insulation_resistance");
-
                     out.collect(new CarChargeAndDisChargeAvgBean(
                         "","","",
                         vin,voltage,electricCurrent,insulationResistance,

@@ -18,11 +18,11 @@ public class CarTripCountBean {
     private String cur_date;
     // 汽车id
     private String vin ;
-    //总里程
+    //里程表总里程
     private Long mileage ;
 
 
-    //当次行驶累计里程
+    //距离上次数据行驶里程
     private Long oneCount;
 
 

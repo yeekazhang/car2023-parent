@@ -5,7 +5,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.atguigu.app.BaseApp;
 import com.atguigu.bean.CarTripCountBean;
 import com.atguigu.common.Constant;
+import com.atguigu.function.DorisMapFunction;
 import com.atguigu.util.DateFormatUtil;
+import com.atguigu.util.FlinkSinkUtil;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.ReduceFunction;
 import org.apache.flink.api.common.state.ValueState;
@@ -36,13 +38,22 @@ public class DwsTripCarTripCount extends BaseApp {
         SingleOutputStreamOperator<CarTripCountBean> beanStream = parseToPojo(stream);
         // 2. 开窗聚合
 //        beanStream.print();
-        windowAndAgg(beanStream);
+        SingleOutputStreamOperator<CarTripCountBean> result = windowAndAgg(beanStream);
+        // 3. 写出到 doris 中
+        writeToDoris(result);
 
 
     }
 
-    private void windowAndAgg(SingleOutputStreamOperator<CarTripCountBean> beanStream) {
-        beanStream
+    private void writeToDoris(SingleOutputStreamOperator<CarTripCountBean> result) {
+        result
+            .map(new DorisMapFunction<>())
+
+            .sinkTo(FlinkSinkUtil.getDorisSink("car_db.dws_car_trip_count"));
+    }
+
+    private SingleOutputStreamOperator<CarTripCountBean> windowAndAgg(SingleOutputStreamOperator<CarTripCountBean> beanStream) {
+        return beanStream
             .assignTimestampsAndWatermarks(
                 WatermarkStrategy
                     .<CarTripCountBean>forBoundedOutOfOrderness(Duration.ofSeconds(30))
@@ -77,7 +88,7 @@ public class DwsTripCarTripCount extends BaseApp {
                     }
                 }
 
-            ).print();
+            );
     }
 
     private SingleOutputStreamOperator<CarTripCountBean> parseToPojo(DataStreamSource<String> stream) {
@@ -111,6 +122,8 @@ public class DwsTripCarTripCount extends BaseApp {
                         if (lastMil < mileage) {
                             oneCount = mileage - lastMil;
                             lastMilState.update(mileage);
+                        }else {
+                            mileage = lastMil;
                         }
                     }
 

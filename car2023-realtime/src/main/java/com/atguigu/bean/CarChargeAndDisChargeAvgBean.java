@@ -5,12 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CarDisChargingAvgVolBean {
+public class CarChargeAndDisChargeAvgBean {
     // 窗口起始时间
     private String stt;
     // 窗口结束时间
@@ -22,7 +20,14 @@ public class CarDisChargingAvgVolBean {
 
     //平均电压分子
     private Long totalVol;
-    //平均电压分母
+
+    //平均电流分子
+    private Long totalElectricCurrent;
+
+    //平均绝缘电阻分子
+    private Long totalInsulationResistance;
+
+    //平均分母
     private Long num;
 
 
