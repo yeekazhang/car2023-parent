@@ -5,7 +5,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.atguigu.app.BaseApp;
 import com.atguigu.bean.AlertCountBean;
 import com.atguigu.common.Constant;
+import com.atguigu.function.DorisMapFunction;
 import com.atguigu.util.DateFormatUtil;
+import com.atguigu.util.FlinkSinkUtil;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.ReduceFunction;
 import org.apache.flink.api.common.state.ValueState;
@@ -23,13 +25,13 @@ import org.apache.flink.util.Collector;
 
 import java.time.Duration;
 
-public class DwsAlertAlertCount extends BaseApp {
+public class DwsAlertAlertCountWindow extends BaseApp {
 
     public static void main(String[] args) {
-        new DwsAlertAlertCount().start(
+        new DwsAlertAlertCountWindow().start(
                 40001,
                 2,
-                "DwsAlertAlertCount",
+                "DwsAlertAlertCountWindow",
                 Constant.TOPIC_DWD_ALERT_WARN
         );
     }
@@ -48,6 +50,9 @@ public class DwsAlertAlertCount extends BaseApp {
     }
 
     private void writeToDoris(SingleOutputStreamOperator<AlertCountBean> resultStream) {
+        resultStream
+                .map(new DorisMapFunction<>())
+                .sinkTo(FlinkSinkUtil.getDorisSink("car.dws_alert_alert_count"));
 
     }
 
