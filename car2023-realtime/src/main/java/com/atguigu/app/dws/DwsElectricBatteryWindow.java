@@ -36,7 +36,7 @@ public class DwsElectricBatteryWindow extends BaseApp {
                 40019,
                 2,
                 "DwsElectricBatteryWindow",
-                Constant.TOPIC_DWD_ALERT_WARN
+                Constant.TOPIC_DWD_ELECTRIC_CHARGE_PILE
         );
     }
     @Override
@@ -57,7 +57,6 @@ public class DwsElectricBatteryWindow extends BaseApp {
                                 .setStateVisibility(StateTtlConfig.StateVisibility.NeverReturnExpired)
                                 .setUpdateType(StateTtlConfig.UpdateType.OnCreateAndWrite)
                                 .build();
-
                         desc.enableTimeToLive(conf);
                         state = getRuntimeContext().getState(desc);
                     }
@@ -137,9 +136,9 @@ public class DwsElectricBatteryWindow extends BaseApp {
 
 
                     }
-                })
-                .map(new DorisMapFunction<>())
-                .sinkTo(FlinkSinkUtil.getDorisSink("car.dws_electric_battery_window"));
+                }).print();
+                /*.map(new DorisMapFunction<>())
+                .sinkTo(FlinkSinkUtil.getDorisSink("car.dws_electric_battery_window"));*/
 
   }
 }

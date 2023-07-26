@@ -31,12 +31,12 @@ import org.apache.flink.util.Collector;
 
 import java.time.Duration;
 
-public class DwsAcceleratorAggElectricWindow extends BaseApp {
+public class DwsElectricAcceleratorAggElectricWindow extends BaseApp {
     public static void main(String[] args) {
-        new DwsAcceleratorAggElectricWindow().start(
+        new DwsElectricAcceleratorAggElectricWindow().start(
                 40022,
                 2,
-                "DwsAcceleratorAggElectricWindow",
+                "DwsElectricAcceleratorAggElectricWindow",
                 Constant.TOPIC_DWD_TEMP_MOTOR
         );
 
@@ -107,7 +107,7 @@ public class DwsAcceleratorAggElectricWindow extends BaseApp {
                     }
                 })
                 .map(new DorisMapFunction<>())
-                .sinkTo(FlinkSinkUtil.getDorisSink("car.dws_accelerator_agg_electric_window"));
+                .sinkTo(FlinkSinkUtil.getDorisSink("car.dws_electric_accelerator_aggelectricwindow"));
 
 
 
