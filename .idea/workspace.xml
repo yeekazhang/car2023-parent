@@ -5,10 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96007084-2712-4f86-b850-1fa97f52d24d" name="Changes" comment="yeeka">
-      <change afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/dws/DwsAlertAlertCount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/bean/AlertCountBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/af45b597-ed42-4913-9fd2-06151dba5427.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_7_25_10_09__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_7_25_10_09__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_7_25_9_09__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_7_25_9_09__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_7_25__09_39__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_7_25__09_39__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_7_25__11_12__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_7_25__11_12__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_7_25__11_32__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_7_25__11_32__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/util/DateFormatUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/util/DateFormatUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,9 +42,10 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="localRepository" value="$USER_HOME$/Developer/Maven/apache-maven-3.8.1/bin/repository" />
+        <option name="alwaysUpdateSnapshots" value="true" />
+        <option name="mavenHome" value="D:/javasoftware/maven/apache-maven-3.8.1-bin/apache-maven-3.8.1" />
         <option name="useMavenConfig" value="true" />
-        <option name="userSettingsFile" value="$USER_HOME$/Developer/Maven/apache-maven-3.8.1/conf/settings.xml" />
+        <option name="userSettingsFile" value="D:\javasoftware\maven\apache-maven-3.8.1-bin\apache-maven-3.8.1\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -50,43 +57,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.highlight.mappings&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.highlight.symlinks&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.show.date&quot;: &quot;false&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.show.permissions&quot;: &quot;false&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.show.size&quot;: &quot;false&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/yeeka/station/workspace/car2023-parent/car2023-realtime/src/main/resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "true",
+    "WebServerToolWindowPanel.toolwindow.highlight.mappings": "true",
+    "WebServerToolWindowPanel.toolwindow.highlight.symlinks": "true",
+    "WebServerToolWindowPanel.toolwindow.show.date": "false",
+    "WebServerToolWindowPanel.toolwindow.show.permissions": "false",
+    "WebServerToolWindowPanel.toolwindow.show.size": "false",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "master",
+    "jdk.selected.JAVA_MODULE": "1.8",
+    "last_opened_file_path": "/Users/yeeka/station/workspace/car2023-parent/car2023-realtime/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.fileTypes",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.atguigu.bean" />
       <recent name="com.atguigu.util" />
       <recent name="com.atguigu.app" />
       <recent name="com.atguigu.common" />
@@ -98,71 +103,11 @@
       <recent name="com.atguigu.app.dwd" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DwsAlertAlertCount">
-    <configuration name="DateFormatUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.DwsTripCarTripCount">
+    <configuration name="DwdElectricDischarging" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.util.DateFormatUtil" />
-      <module name="car2023-realtime" />
-      <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
-      <target name="@@@LOCAL@@@" />
-      <selectedOptions>
-        <option name="target.project.path" />
-      </selectedOptions>
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.atguigu.util.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DimApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dim.DimApp" />
-      <module name="car2023-realtime" />
-      <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
-      <target name="@@@LOCAL@@@" />
-      <selectedOptions>
-        <option name="target.project.path" />
-      </selectedOptions>
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.atguigu.app.dim.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DimAppYeeka" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dim.DimAppYeeka" />
-      <module name="car2023-realtime" />
-      <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
-      <target name="@@@LOCAL@@@" />
-      <selectedOptions>
-        <option name="target.project.path" />
-      </selectedOptions>
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.atguigu.app.dim.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DwdAlertWarn" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dwd.DwdAlertWarn" />
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dwd.DwdElectricDischarging" />
       <module name="car2023-realtime" />
       <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
       <target name="@@@LOCAL@@@" />
@@ -179,10 +124,70 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DwsAlertAlertCount" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="DwdTempMotor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dws.DwsAlertAlertCount" />
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dwd.DwdTempMotor" />
+      <module name="car2023-realtime" />
+      <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
+      <target name="@@@LOCAL@@@" />
+      <selectedOptions>
+        <option name="target.project.path" />
+      </selectedOptions>
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.app.dwd.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DwdTripJourney" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dwd.DwdTripJourney" />
+      <module name="car2023-realtime" />
+      <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
+      <target name="@@@LOCAL@@@" />
+      <selectedOptions>
+        <option name="target.project.path" />
+      </selectedOptions>
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.app.dwd.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DwsElectCarDisChargingAvgVol" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dws.DwsElectCarDisChargingAvgVol" />
+      <module name="car2023-realtime" />
+      <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
+      <target name="@@@LOCAL@@@" />
+      <selectedOptions>
+        <option name="target.project.path" />
+      </selectedOptions>
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.app.dws.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DwsTripCarTripCount" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dws.DwsTripCarTripCount" />
       <module name="car2023-realtime" />
       <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
       <target name="@@@LOCAL@@@" />
@@ -202,6 +207,7 @@
     <configuration default="true" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
+      <module name="car2023-realtime" />
       <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
       <target name="@@@LOCAL@@@" />
       <selectedOptions>
@@ -223,11 +229,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DwsAlertAlertCount" />
-        <item itemvalue="Application.DateFormatUtil" />
-        <item itemvalue="Application.DwdAlertWarn" />
-        <item itemvalue="Application.DimApp" />
-        <item itemvalue="Application.DimAppYeeka" />
+        <item itemvalue="Application.DwsTripCarTripCount" />
+        <item itemvalue="Application.DwsElectCarDisChargingAvgVol" />
+        <item itemvalue="Application.DwdElectricDischarging" />
+        <item itemvalue="Application.DwdTempMotor" />
+        <item itemvalue="Application.DwdTripJourney" />
       </list>
     </recent_temporary>
   </component>
@@ -256,8 +262,9 @@
       <workItem from="1690200939624" duration="155000" />
       <workItem from="1690202165639" duration="2466000" />
       <workItem from="1690204773413" duration="1453000" />
-      <workItem from="1690245201224" duration="19458000" />
-      <workItem from="1690272053256" duration="11244000" />
+      <workItem from="1690245201224" duration="14119000" />
+      <workItem from="1690269222112" duration="17166000" />
+      <workItem from="1690330991446" duration="677000" />
     </task>
     <task id="LOCAL-00001" summary="初始状态">
       <created>1690181840801</created>
@@ -315,28 +322,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690256162880</updated>
     </task>
-    <task id="LOCAL-00009" summary="yeeka">
-      <created>1690266960594</created>
+    <task id="LOCAL-00009" summary="ok">
+      <created>1690331131702</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1690266960594</updated>
+      <updated>1690331131702</updated>
     </task>
-    <task id="LOCAL-00010" summary="yeeka">
-      <created>1690272595281</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1690272595282</updated>
-    </task>
-    <task id="LOCAL-00011" summary="yeeka">
-      <created>1690272778638</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1690272778638</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -370,7 +363,8 @@
     <MESSAGE value="getKafkaSource完成" />
     <MESSAGE value="getKafkasinnk" />
     <MESSAGE value="yeeka" />
-    <option name="LAST_COMMIT_MESSAGE" value="yeeka" />
+    <MESSAGE value="ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="ok" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
