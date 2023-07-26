@@ -38,8 +38,9 @@ public class DimApp extends BaseApp {
     protected void handle(StreamExecutionEnvironment env, DataStreamSource<String> stream) {
         //1. 通过 flink cdc 读取维度表的数据
         Map<String, DataStream<JSONObject>> streams = readFromDim(env);
+        streams.get("dicCode").print();
 
-        //2. HBase 中建表
+       /* //2. HBase 中建表
         try {
             createHBaseTable();
         } catch (IOException e) {
@@ -47,7 +48,7 @@ public class DimApp extends BaseApp {
         }
         //3. 写到Hbase中
         writeToHbase(streams);
-
+*/
 
 
 
