@@ -177,3 +177,56 @@ properties (
   "dynamic_partition.prefix" = "par",
   "dynamic_partition.buckets" = "10"
 );
+
+
+drop table if exists dws_electric_accelerator_agg_electric_window;
+create table if not exists dws_electric_accelerator_agg_electric_window
+(
+    `stt`           DATETIME comment '窗口起始时间',
+    `edt`           DATETIME comment '窗口结束时间',
+    `cur_date`      DATE comment '当天日期' ,
+    `vin`  VARCHAR(30)  comment '	汽车唯一ID',
+    `sum_electric`  DOUBLE  replace comment '电机总电流',
+    `electric_count` int replace  comment '统计次数'
+
+    )
+    engine = olap
+    aggregate key (`stt`, `edt`,`cur_date`,`vin`)
+    comment '电压域各车油门电流累计表'
+    partition by range(`cur_date`)()
+    distributed by hash(`stt`) buckets 10
+    properties (
+                   "replication_num" = "1",
+                   "dynamic_partition.enable" = "true",
+                   "dynamic_partition.time_unit" = "DAY",
+                   "dynamic_partition.end" = "3",
+                   "dynamic_partition.prefix" = "par",
+                   "dynamic_partition.buckets" = "10"
+               );
+
+
+
+drop table if exists dws_energy_charge_cycles_window;
+create table if not exists dws_energy_charge_cycles_window
+(
+    `stt`           DATETIME comment '窗口起始时间',
+    `edt`           DATETIME comment '窗口结束时间',
+    `cur_date`      DATE comment '当天日期' ,
+    `vin`  VARCHAR(30)  comment '	汽车唯一ID',
+    `charge_cycles`  int  replace comment '总充电次数',
+    `charge_slow_cycles`  int  replace comment '总慢充电次数',
+    `charge_fast_cycles`  int  replace comment '总快充电次数'
+    )
+    engine = olap
+    aggregate key (`stt`, `edt`,`cur_date`,`vin`)
+    comment '电压域各车充电次数汇总表'
+    partition by range(`cur_date`)()
+    distributed by hash(`stt`) buckets 10
+    properties (
+                   "replication_num" = "1",
+                   "dynamic_partition.enable" = "true",
+                   "dynamic_partition.time_unit" = "DAY",
+                   "dynamic_partition.end" = "3",
+                   "dynamic_partition.prefix" = "par",
+                   "dynamic_partition.buckets" = "10"
+               );
