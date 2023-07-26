@@ -20,8 +20,8 @@ public class ElectricBatteryBean {
 
 
     String vin;
-    @Builder.Default
-    Integer batteryMaxVoltage =0;
+
+
     @Builder.Default
     Integer batteryMaxDiffVoltage =0;
     @Builder.Default
