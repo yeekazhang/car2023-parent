@@ -21,6 +21,21 @@ public class BatteryTemperatureControlBean {
     // 汽车id
     String vin;
 
+    // 汽车品牌
+    String trademark;
+
+    // 制造公司
+    String company;
+
+    // 能源类型
+    String powerType;
+
+    // 充电类型
+    String chargeType;
+
+    // 车型
+    String category;
+
     // 电池最高温度
     Integer maxTemperature;
 
