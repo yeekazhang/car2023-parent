@@ -1,6 +1,8 @@
 package com.atguigu.common;
 
 public class Constant {
+
+    public static final String HOST_NAME = "hadoop162";
     public static final String KAFKA_BROKERS = "hadoop162:9092,hadoop163:9092,hadoop164:9092";
     public static final String TOPIC_ODS_LOG = "ods_log";
     public static final String TOPIC_DWD_ELECTRIC_CHARGE_PILE = "dwd_electric_charge_pile";
@@ -18,4 +20,5 @@ public class Constant {
     public static final String TOPIC_DWD_TRIP_JOURNEY = "dwd_trip_journey";
     public static final String TOPIC_DWD_ELECTRIC_BATTERY = "dwd_electric_battery";
     public static final String DORIS_FE_NODE = "hadoop162:7030";
+    public static final int TWO_DAY_SECONDS = 2 * 24 * 60 * 60;
 }

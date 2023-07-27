@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96007084-2712-4f86-b850-1fa97f52d24d" name="Changes" comment="sugar">
-      <change afterPath="$PROJECT_DIR$/car2023-sugar/src/main/resources/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/function/DimFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/function/MapDimFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/util/RedisUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/BaseSQLApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/BaseSQLApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/Car2023SugarApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/Car2023SugarApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/controller/SugarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/controller/SugarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/mapper/AlertMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/mapper/AlertMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-sugar/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-sugar/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/dws/DwsAlertAlertCountWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/dws/DwsAlertAlertCountWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/bean/AlertCountBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/bean/AlertCountBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/common/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/common/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/util/HBaseUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/util/HBaseUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -74,7 +74,7 @@
     "WebServerToolWindowPanel.toolwindow.show.permissions": "false",
     "WebServerToolWindowPanel.toolwindow.show.size": "false",
     "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "yeeka",
     "jdk.selected.JAVA_MODULE": "1.8",
     "last_opened_file_path": "/Users/yeeka/station/workspace/car2023-parent/car2023-sugar/src/main/resources/static",
     "node.js.detected.package.eslint": "true",
@@ -96,8 +96,9 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.atguigu.bean" />
       <recent name="com.atguigu.util" />
+      <recent name="com.atguigu.function" />
+      <recent name="com.atguigu.bean" />
       <recent name="com.atguigu.app" />
       <recent name="com.atguigu.common" />
     </key>
@@ -109,7 +110,7 @@
       <recent name="com.atguigu.app.dwd" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.Car2023SugarApplication">
+  <component name="RunManager" selected="Application.DwsAlertAlertCountWindow">
     <configuration name="DwdAlertWarn" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
@@ -134,26 +135,6 @@
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dwd.DwdElectricChargePile" />
-      <module name="car2023-realtime" />
-      <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
-      <target name="@@@LOCAL@@@" />
-      <selectedOptions>
-        <option name="target.project.path" />
-      </selectedOptions>
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.atguigu.app.dwd.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DwdTempMotor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dwd.DwdTempMotor" />
       <module name="car2023-realtime" />
       <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
       <target name="@@@LOCAL@@@" />
@@ -252,7 +233,6 @@
         <item itemvalue="Application.DwdAlertWarn" />
         <item itemvalue="Application.DwdElectricChargePile" />
         <item itemvalue="Application.DwsTempMotorTemperatureControlWindow" />
-        <item itemvalue="Application.DwdTempMotor" />
       </list>
     </recent_temporary>
   </component>
@@ -282,7 +262,7 @@
       <workItem from="1690202165639" duration="2466000" />
       <workItem from="1690204773413" duration="1453000" />
       <workItem from="1690245201224" duration="19458000" />
-      <workItem from="1690272053256" duration="44412000" />
+      <workItem from="1690272053256" duration="52207000" />
     </task>
     <task id="LOCAL-00001" summary="初始状态">
       <created>1690181840801</created>
@@ -410,7 +390,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690364186040</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="sugar">
+      <created>1690368005041</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1690368005041</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

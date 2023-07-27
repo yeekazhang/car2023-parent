@@ -6,6 +6,7 @@ import com.atguigu.app.BaseApp;
 import com.atguigu.bean.AlertCountBean;
 import com.atguigu.common.Constant;
 import com.atguigu.function.DorisMapFunction;
+import com.atguigu.function.MapDimFunction;
 import com.atguigu.util.DateFormatUtil;
 import com.atguigu.util.FlinkSinkUtil;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
@@ -42,11 +43,38 @@ public class DwsAlertAlertCountWindow extends BaseApp {
         SingleOutputStreamOperator<AlertCountBean> beanStream = parseToPojo(stream);
 
         // 2 开窗聚合
-        SingleOutputStreamOperator<AlertCountBean> resultStream = windowAndAgg(beanStream);
+        SingleOutputStreamOperator<AlertCountBean> beanStreamWithoutDim = windowAndAgg(beanStream);
 
-        // 3 写出到doris
+        // 3 join 维度
+        SingleOutputStreamOperator<AlertCountBean> resultStream = joinDim(beanStreamWithoutDim);
+
+        // 4 写出到doris
         writeToDoris(resultStream);
 
+    }
+
+    private SingleOutputStreamOperator<AlertCountBean> joinDim(SingleOutputStreamOperator<AlertCountBean> stream) {
+        return stream
+                .map(new MapDimFunction<AlertCountBean>() {
+                    @Override
+                    public String getRowKey(AlertCountBean bean) {
+                        return bean.getVin();
+                    }
+
+                    @Override
+                    public String getTableName() {
+                        return "dim_car_info";
+                    }
+
+                    @Override
+                    public void addDims(AlertCountBean bean, JSONObject dim) {
+                        bean.setTrademark(dim.getString("trademark"));
+                        bean.setCompany(dim.getString("company"));
+                        bean.setPowerType(dim.getString("power_type"));
+                        bean.setChargeType(dim.getString("charge_type"));
+                        bean.setCategory(dim.getString("category"));
+                    }
+                });
     }
 
     private void writeToDoris(SingleOutputStreamOperator<AlertCountBean> resultStream) {
@@ -120,7 +148,7 @@ public class DwsAlertAlertCountWindow extends BaseApp {
                                 out.collect(new AlertCountBean(
                                         "", "",
                                         "",
-                                        vin,
+                                        vin,"","","","","",
                                         alertCt, alarmLevel,
                                         ts
                                 ));

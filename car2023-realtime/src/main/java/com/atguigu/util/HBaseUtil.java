@@ -1,13 +1,17 @@
 package com.atguigu.util;
 
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.hadoop.conf.Configuration;
 
+import org.apache.hadoop.hbase.Cell;
+import org.apache.hadoop.hbase.CellUtil;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 
 import java.io.IOException;
+import java.util.List;
 
 public class HBaseUtil {
     public static Connection getHBaseConnection() throws IOException {
@@ -82,5 +86,31 @@ public class HBaseUtil {
         // 删除整行
         t.delete(delete);
         t.close();
+    }
+
+    public static <T> T getRow(Connection hbaseConn,
+                                    String namespace,
+                                    String tableName,
+                                    String rowKey,
+                                    Class<T> tClass) {
+
+        try(Table table = hbaseConn.getTable(TableName.valueOf(namespace, tableName))){
+            Get get = new Get(Bytes.toBytes(rowKey));
+            Result result = table.get(get);
+
+            List<Cell> cells = result.listCells();
+            T t = tClass.newInstance();
+            for (Cell cell : cells) {
+                String key = Bytes.toString(CellUtil.cloneQualifier(cell));
+                String value = Bytes.toString(CellUtil.cloneValue(cell));
+
+                BeanUtils.setProperty(t, key, value);
+            }
+
+            return t;
+        } catch (Exception e){
+            throw new RuntimeException(e);
+        }
+
     }
 }
