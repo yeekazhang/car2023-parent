@@ -76,9 +76,6 @@ properties (
   "dynamic_partition.buckets" = "10"
 );
 
-create database car;
-use car;
-
 drop table if exists dws_alert_alert_count;
 create table if not exists dws_alert_alert_count
 (
@@ -86,11 +83,16 @@ create table if not exists dws_alert_alert_count
     `edt`           DATETIME comment '窗口结束时间',
     `cur_date`      DATE comment '当天日期',
     `vin`           varchar(20) comment '汽车id',
+    `trademark`     varchar(10) comment '汽车品牌',
+    `company`       varchar(10) comment '制造公司',
+    `power_type`    varchar(10) comment '能源类型',
+    `charge_type`   varchar(10) comment '充电类型',
+    `category`      varchar(10) comment '车型',
     `alert_level`   varchar(5) comment '告警等级',
     `alert_ct`      bigint replace comment '告警次数'
 
 ) engine = olap
-aggregate key (`stt`, `edt`, `cur_date`, `vin`, `alert_level`)
+aggregate key (`stt`, `edt`, `cur_date`, `vin`, `trademark`,`company`,`power_type`,`charge_type`,`category`,`alert_level`)
 comment "告警域-车辆告警等级粒度告警次数汇总表"
 partition by range(`cur_date`)()
 distributed by hash(`stt`) buckets 10
@@ -110,11 +112,16 @@ create table if not exists dws_temp_battery_temperature_control
     `edt`           DATETIME comment '窗口结束时间',
     `cur_date`      DATE comment '当天日期',
     `vin`           varchar(20) comment '汽车id',
+    `trademark`     varchar(10) comment '汽车品牌',
+    `company`       varchar(10) comment '制造公司',
+    `power_type`    varchar(10) comment '能源类型',
+    `charge_type`   varchar(10) comment '充电类型',
+    `category`      varchar(10) comment '车型',
     `max_temperature`   int replace comment '电池最高温度',
     `battery_abnormal_ct`      bigint replace comment '电池温度异常值次数'
 
 ) engine = olap
-    aggregate key (`stt`, `edt`, `cur_date`, `vin`)
+    aggregate key (`stt`, `edt`, `cur_date`, `vin`,`trademark`,`company`,`power_type`,`charge_type`,`category`)
 comment "温度域-汽车电池粒度温度汇总表"
 partition by range(`cur_date`)()
 distributed by hash(`stt`) buckets 10
@@ -134,13 +141,18 @@ create table if not exists dws_temp_motor_temperature_control
     `edt`           DATETIME comment '窗口结束时间',
     `cur_date`      DATE comment '当天日期',
     `vin`           varchar(20) comment '汽车id',
+    `trademark`     varchar(10) comment '汽车品牌',
+    `company`       varchar(10) comment '制造公司',
+    `power_type`    varchar(10) comment '能源类型',
+    `charge_type`   varchar(10) comment '充电类型',
+    `category`      varchar(10) comment '车型',
     `motor_max_temperature`   int replace comment '电机最高温度',
     `control_max_temperature` int replace comment '控制器最高温度',
     `motor_acc_temperature` bigint replace comment '电机平均温度',
     `control_acc_temperature` bigint replace comment '控制器平均温度',
     `motor_acc_ct` bigint replace comment '电机累计数量'
 ) engine = olap
-    aggregate key (`stt`, `edt`, `cur_date`, `vin`)
+    aggregate key (`stt`, `edt`, `cur_date`, `vin`,`trademark`,`company`,`power_type`,`charge_type`,`category`)
 comment "温度域-汽车粒度电机和控制器温度汇总表"
 partition by range(`cur_date`)()
 distributed by hash(`stt`) buckets 10

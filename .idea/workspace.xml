@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96007084-2712-4f86-b850-1fa97f52d24d" name="Changes" comment="sugar">
-      <change afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/function/AsyncDimFunction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/dws/DwsTempBatteryTemperatureControlWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/dws/DwsTempBatteryTemperatureControlWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/dws/DwsTempMotorTemperatureControlWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/app/dws/DwsTempMotorTemperatureControlWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/bean/BatteryTemperatureControlBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/bean/BatteryTemperatureControlBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/bean/MotorTemperatureControlBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/bean/MotorTemperatureControlBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/common/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/common/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/function/MapDimFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/function/MapDimFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/util/HBaseUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/util/HBaseUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/util/RedisUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-realtime/src/main/java/com/atguigu/util/RedisUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doris.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doris.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,45 +49,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.highlight.mappings&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.highlight.symlinks&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.show.date&quot;: &quot;false&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.show.permissions&quot;: &quot;false&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.show.size&quot;: &quot;false&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;yeeka&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/yeeka/station/workspace/car2023-parent/car2023-sugar/src/main/resources/static&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;SQL Dialects&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "true",
+    "WebServerToolWindowPanel.toolwindow.highlight.mappings": "true",
+    "WebServerToolWindowPanel.toolwindow.highlight.symlinks": "true",
+    "WebServerToolWindowPanel.toolwindow.show.date": "false",
+    "WebServerToolWindowPanel.toolwindow.show.permissions": "false",
+    "WebServerToolWindowPanel.toolwindow.show.size": "false",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "master",
+    "jdk.selected.JAVA_MODULE": "1.8",
+    "last_opened_file_path": "/Users/yeeka/station/workspace/car2023-parent/car2023-sugar/src/main/resources/static",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "SQL Dialects",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -461,7 +453,8 @@
     <MESSAGE value="yeeka 修改成electric" />
     <MESSAGE value="yeeka" />
     <MESSAGE value="sugar" />
-    <option name="LAST_COMMIT_MESSAGE" value="sugar" />
+    <MESSAGE value="redis" />
+    <option name="LAST_COMMIT_MESSAGE" value="redis" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
