@@ -38,9 +38,6 @@ public abstract class MapDimFunction<T> extends RichMapFunction<T, T> implements
 
             // 3 并把读到的维度缓存到redis中
             RedisUtil.writeDim(jedis, getTableName(), getRowKey(bean), dim);
-            System.out.println("走 hbase: " + getTableName() + "  " + getRowKey(bean));
-        } else {
-            System.out.println("走 redis: " + getTableName() + "  " + getRowKey(bean));
         }
 
         // 补充维度

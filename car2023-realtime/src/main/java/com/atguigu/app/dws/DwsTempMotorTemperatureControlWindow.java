@@ -6,12 +6,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.atguigu.app.BaseApp;
 import com.atguigu.bean.MotorTemperatureControlBean;
 import com.atguigu.common.Constant;
+import com.atguigu.function.AsyncDimFunction;
 import com.atguigu.function.DorisMapFunction;
 import com.atguigu.util.DateFormatUtil;
 import com.atguigu.util.FlinkSinkUtil;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.functions.ReduceFunction;
+import org.apache.flink.streaming.api.datastream.AsyncDataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
@@ -22,6 +24,7 @@ import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 import org.apache.flink.util.Collector;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class DwsTempMotorTemperatureControlWindow extends BaseApp {
 
@@ -37,15 +40,47 @@ public class DwsTempMotorTemperatureControlWindow extends BaseApp {
     @Override
     protected void handle(StreamExecutionEnvironment env, DataStreamSource<String> stream) {
 
-        // 1 转化为Pojo
+        // 1 转化为 Pojo
         SingleOutputStreamOperator<MotorTemperatureControlBean> beanStream = parseToPojo(stream);
 
 
         // 2 开窗和聚合
         SingleOutputStreamOperator<MotorTemperatureControlBean> resultStream = windowAndAgg(beanStream);
 
-        // 3 写出到doris
-        writeToDoris(resultStream);
+        // 3 join 维度
+        SingleOutputStreamOperator<MotorTemperatureControlBean> result = joinDim(resultStream);
+
+        // 4 写出到 doris
+        writeToDoris(result);
+
+    }
+
+    private SingleOutputStreamOperator<MotorTemperatureControlBean> joinDim(SingleOutputStreamOperator<MotorTemperatureControlBean> resultStream) {
+        return AsyncDataStream.unorderedWait(
+                resultStream,
+                new AsyncDimFunction<MotorTemperatureControlBean>() {
+                    @Override
+                    public String getRowKey(MotorTemperatureControlBean bean) {
+                        return bean.getVin();
+                    }
+
+                    @Override
+                    public String getTableName() {
+                        return "dim_car_info";
+                    }
+
+                    @Override
+                    public void addDims(MotorTemperatureControlBean bean, JSONObject dim) {
+                        bean.setTrademark(dim.getString("trademark"));
+                        bean.setCompany(dim.getString("company"));
+                        bean.setPowerType(dim.getString("power_type"));
+                        bean.setChargeType(dim.getString("charge_type"));
+                        bean.setCategory(dim.getString("category"));
+                    }
+                },
+                120,
+                TimeUnit.SECONDS
+        );
 
     }
 
@@ -54,7 +89,7 @@ public class DwsTempMotorTemperatureControlWindow extends BaseApp {
                 .assignTimestampsAndWatermarks(
                         WatermarkStrategy
                                 .<MotorTemperatureControlBean>forBoundedOutOfOrderness(Duration.ofMinutes(10))
-                                .withTimestampAssigner((bean,ts) -> bean.getTs())
+                                .withTimestampAssigner((bean, ts) -> bean.getTs())
                                 .withIdleness(Duration.ofMinutes(300))
                 )
                 .keyBy(MotorTemperatureControlBean::getVin)
@@ -92,9 +127,6 @@ public class DwsTempMotorTemperatureControlWindow extends BaseApp {
     }
 
 
-
-
-
     private SingleOutputStreamOperator<MotorTemperatureControlBean> parseToPojo(DataStreamSource<String> stream) {
         return stream
                 .map(new MapFunction<String, MotorTemperatureControlBean>() {
@@ -109,7 +141,7 @@ public class DwsTempMotorTemperatureControlWindow extends BaseApp {
                         Long motorAccTemperature = 0L;
                         Long controlAccTemperature = 0L;
                         for (Object o : motorList) {
-                            JSONObject motor = (JSONObject)o;
+                            JSONObject motor = (JSONObject) o;
                             Integer motorTemperature = motor.getInteger("temperature");
                             Integer controlTemperature = motor.getInteger("controller_temperature");
                             // 取机器里最大的温度
@@ -122,9 +154,9 @@ public class DwsTempMotorTemperatureControlWindow extends BaseApp {
 
                         return new MotorTemperatureControlBean(
                                 "", "", "",
-                                vin,
-                                motorMaxTemperature,controlMaxTemperature,
-                                motorAccTemperature,controlAccTemperature,
+                                vin, "", "", "", "", "",
+                                motorMaxTemperature, controlMaxTemperature,
+                                motorAccTemperature, controlAccTemperature,
                                 2L,
                                 ts
                         );

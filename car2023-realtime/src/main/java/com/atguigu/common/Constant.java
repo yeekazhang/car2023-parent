@@ -21,4 +21,5 @@ public class Constant {
     public static final String TOPIC_DWD_ELECTRIC_BATTERY = "dwd_electric_battery";
     public static final String DORIS_FE_NODE = "hadoop162:7030";
     public static final int TWO_DAY_SECONDS = 2 * 24 * 60 * 60;
+    public static final String REDIS_CLIENT = "redis://hadoop162:6379/8";
 }
