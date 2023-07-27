@@ -49,8 +49,6 @@ public class DwsElectricCarChargeAvgVolWindow_ASYNC extends BaseApp {
 
         // 2.5 补充维度
         SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> result = joinDim(noDimStream);
-        result.print();
-
 
         // 3. 写出到 doris 中
         writeToDoris(result);
@@ -75,7 +73,7 @@ public class DwsElectricCarChargeAvgVolWindow_ASYNC extends BaseApp {
                 public void addDims(CarChargeAndDisChargeAvgBean bean, JSONObject dim) {
                     bean.setCategory(dim.getString("category"));
                     bean.setTrademark(dim.getString("trademark"));
-                    bean.setType(dim.getString("type"));
+                    bean.setChargeType(dim.getString("charge_type"));
                 }
             }
         ,
@@ -88,7 +86,7 @@ public class DwsElectricCarChargeAvgVolWindow_ASYNC extends BaseApp {
     private void writeToDoris(SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> result) {
         result
             .map(new DorisMapFunction<>())
-            .sinkTo(FlinkSinkUtil.getDorisSink("car_db.dws_car_charge_avg"));
+            .sinkTo(FlinkSinkUtil.getDorisSink("car.dws_car_charge_avg"));
     }
 
     private SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> windowAndAgg(SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> beanStream) {
@@ -123,7 +121,7 @@ public class DwsElectricCarChargeAvgVolWindow_ASYNC extends BaseApp {
 
                         bean.setStt(DateFormatUtil.tsToDateTime(ctx.window().getStart()));
                         bean.setEdt(DateFormatUtil.tsToDateTime(ctx.window().getEnd()));
-                        bean.setCur_date(DateFormatUtil.tsToDateForPartition(ctx.window().getStart()));
+                        bean.setCurDate(DateFormatUtil.tsToDateForPartition(ctx.window().getStart()));
 
                         out.collect(bean);
                     }

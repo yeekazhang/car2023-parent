@@ -26,7 +26,6 @@ public class HBaseSinkFunction extends RichSinkFunction<JSONObject> {
     @Override
     public void close() throws Exception {
         HBaseUtil.closeHBaseConn(conn);
-        RedisUtil.closeJedis(jedis);
     }
 
     @Override

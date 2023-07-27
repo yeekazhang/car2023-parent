@@ -46,41 +46,35 @@ public class DwsElectricCarDisChargingAvgVolWindow extends BaseApp {
 
 
         // 2.5 补充维度
-        result.map(new MapDimFunction<CarChargeAndDisChargeAvgBean>() {
-                @Override
-                public String getRowKey(CarChargeAndDisChargeAvgBean bean) {
-                    return bean.getVin();
-                }
+        SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> resultStream = result.map(new MapDimFunction<CarChargeAndDisChargeAvgBean>() {
+            @Override
+            public String getRowKey(CarChargeAndDisChargeAvgBean bean) {
+                return bean.getVin();
+            }
 
-                @Override
-                public String getTableName() {
-                    return "dim_car_info";
-                }
+            @Override
+            public String getTableName() {
+                return "dim_car_info";
+            }
 
-                @Override
-                public void addDims(CarChargeAndDisChargeAvgBean bean, JSONObject dim) {
-                    bean.setCategory(dim.getString("category"));
-                    bean.setTrademark(dim.getString("trademark"));
-                    bean.setType(dim.getString("type"));
-                }
-            })
-            .print();
-
-
-
-
-
+            @Override
+            public void addDims(CarChargeAndDisChargeAvgBean bean, JSONObject dim) {
+                bean.setCategory(dim.getString("category"));
+                bean.setTrademark(dim.getString("trademark"));
+                bean.setChargeType(dim.getString("charge_type"));
+            }
+        });
 
 
         // 3. 写出到 doris 中
 
-        //writeToDoris(result);
+        writeToDoris(resultStream);
     }
 
     private void writeToDoris(SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> result) {
         result
             .map(new DorisMapFunction<>())
-            .sinkTo(FlinkSinkUtil.getDorisSink("car_db.dws_car_discharge_avg"));
+            .sinkTo(FlinkSinkUtil.getDorisSink("car.dws_car_discharge_avg"));
     }
 
     private SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> windowAndAgg(SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> beanStream) {
@@ -115,7 +109,7 @@ public class DwsElectricCarDisChargingAvgVolWindow extends BaseApp {
 
                         bean.setStt(DateFormatUtil.tsToDateTime(ctx.window().getStart()));
                         bean.setEdt(DateFormatUtil.tsToDateTime(ctx.window().getEnd()));
-                        bean.setCur_date(DateFormatUtil.tsToDateForPartition(ctx.window().getStart()));
+                        bean.setCurDate(DateFormatUtil.tsToDateForPartition(ctx.window().getStart()));
 
                         out.collect(bean);
                     }

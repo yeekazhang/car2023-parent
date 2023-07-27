@@ -15,7 +15,7 @@ public class CarTripCountBean {
     // 窗口结束时间
     private String edt;
     // 当天日期
-    private String cur_date;
+    private String curDate;
     // 汽车id
     private String vin ;
     //里程表总里程

@@ -1,80 +1,5 @@
-drop table if exists dws_car_charge_avg;
-create table if not exists dws_car_charge_avg
-(
-    `stt`                          DATETIME comment '窗口起始时间',
-    `edt`                          DATETIME comment '窗口结束时间',
-    `cur_date`                     DATE comment '当天日期',
-    `vin`                 		   VARCHAR(20) comment '汽车Id',
-    `total_vol`    					BIGINT  replace comment '平均电压分子',
-    `total_electric_current` 		BIGINT  replace comment '平均电流分子',
-    `total_insulation_resistance`   BIGINT  replace comment '平均绝缘电阻分子',
-    `num`                 			BIGINT  replace comment '平均分母'
-) engine = olap
-    aggregate key (
-`stt`,`edt`,`cur_date`,`vin`
-)
-partition by range(`cur_date`)()
-distributed by hash(`stt`) buckets 10
-properties (
-  "replication_num" = "1",
-  "dynamic_partition.enable" = "true",
-  "dynamic_partition.time_unit" = "DAY",
-  "dynamic_partition.end" = "3",
-  "dynamic_partition.prefix" = "par",
-  "dynamic_partition.buckets" = "10"
-);
-
-
-
-drop table if exists dws_car_discharge_avg;
-create table if not exists dws_car_discharge_avg
-(
-    `stt`                          DATETIME comment '窗口起始时间',
-    `edt`                          DATETIME comment '窗口结束时间',
-    `cur_date`                     DATE comment '当天日期',
-    `vin`                 		   VARCHAR(20) comment '汽车Id',
-    `total_vol`    					BIGINT  replace comment '平均电压分子',
-    `total_electric_current` 		BIGINT  replace comment '平均电流分子',
-    `total_insulation_resistance`   BIGINT  replace comment '平均绝缘电阻分子',
-    `num`                 			BIGINT  replace comment '平均分母'
-) engine = olap
-    aggregate key (
-`stt`,`edt`,`cur_date`,`vin`
-)
-partition by range(`cur_date`)()
-distributed by hash(`stt`) buckets 10
-properties (
-  "replication_num" = "1",
-  "dynamic_partition.enable" = "true",
-  "dynamic_partition.time_unit" = "DAY",
-  "dynamic_partition.end" = "3",
-  "dynamic_partition.prefix" = "par",
-  "dynamic_partition.buckets" = "10"
-);
-
-drop table if exists dws_car_trip_count;
-create table if not exists dws_car_trip_count
-(
-    `stt`                          DATETIME comment '窗口起始时间',
-    `edt`                          DATETIME comment '窗口结束时间',
-    `cur_date`                     DATE comment '当天日期',
-    `vin`                 		   VARCHAR(20) comment '汽车Id',
-    `mileage`    					BIGINT  replace comment '里程表总里程',
-    `one_count` 					BIGINT  replace comment '距离上次数据行驶里程'
-) engine = olap
-    aggregate key (
-`stt`,`edt`,`cur_date`,`vin`
-)
-partition by range(`cur_date`)()
-distributed by hash(`stt`) buckets 10
-properties (
-  "replication_num" = "1",
-  "dynamic_partition.enable" = "true",
-  "dynamic_partition.time_unit" = "DAY",
-  "dynamic_partition.end" = "3",
-  "dynamic_partition.prefix" = "par",
-  "dynamic_partition.buckets" = "10"
-);
+create database car;
+use car;
 
 drop table if exists dws_alert_alert_count;
 create table if not exists dws_alert_alert_count
@@ -165,8 +90,91 @@ properties (
   "dynamic_partition.buckets" = "10"
 );
 
-drop table if exists dws_temp_battery_temperature_control;
-create table if not exists dws_temp_battery_temperature_control
+drop table if exists dws_car_charge_avg;
+create table if not exists dws_car_charge_avg
+(
+    `stt`                           DATETIME comment '窗口起始时间',
+    `edt`                           DATETIME comment '窗口结束时间',
+    `cur_date`                      DATE comment '当天日期',
+    `vin`                 		    VARCHAR(20) comment '汽车Id',
+    `trademark`                     varchar(10) comment '汽车品牌',
+    `charge_type`                   varchar(10) comment '充电类型',
+    `category`                      varchar(10) comment '车型',
+    `total_vol`    					BIGINT  replace comment '平均电压分子',
+    `total_electric_current` 		BIGINT  replace comment '平均电流分子',
+    `total_insulation_resistance`   BIGINT  replace comment '平均绝缘电阻分子',
+    `num`                 			BIGINT  replace comment '平均分母'
+) engine = olap
+    aggregate key (`stt`,`edt`,`cur_date`,`vin`,`trademark`,`charge_type`,`category`)
+comment "电控域-汽车粒度充电电压电流汇总表"
+partition by range(`cur_date`)()
+distributed by hash(`stt`) buckets 10
+properties (
+  "replication_num" = "1",
+  "dynamic_partition.enable" = "true",
+  "dynamic_partition.time_unit" = "DAY",
+  "dynamic_partition.end" = "3",
+  "dynamic_partition.prefix" = "par",
+  "dynamic_partition.buckets" = "10"
+);
+
+drop table if exists dws_car_discharge_avg;
+create table if not exists dws_car_discharge_avg
+(
+    `stt`                          DATETIME comment '窗口起始时间',
+    `edt`                          DATETIME comment '窗口结束时间',
+    `cur_date`                     DATE comment '当天日期',
+    `vin`                 		   VARCHAR(20) comment '汽车Id',
+    `trademark`                     varchar(10) comment '汽车品牌',
+    `charge_type`                   varchar(10) comment '充电类型',
+    `category`                      varchar(10) comment '车型',
+    `total_vol`    					BIGINT  replace comment '平均电压分子',
+    `total_electric_current` 		BIGINT  replace comment '平均电流分子',
+    `total_insulation_resistance`   BIGINT  replace comment '平均绝缘电阻分子',
+    `num`                 			BIGINT  replace comment '平均分母'
+) engine = olap
+    aggregate key (
+`stt`,`edt`,`cur_date`,`vin`,`trademark`,`charge_type`,`category`
+)
+comment "电控域-汽车粒度放电电压电流汇总表"
+partition by range(`cur_date`)()
+distributed by hash(`stt`) buckets 10
+properties (
+  "replication_num" = "1",
+  "dynamic_partition.enable" = "true",
+  "dynamic_partition.time_unit" = "DAY",
+  "dynamic_partition.end" = "3",
+  "dynamic_partition.prefix" = "par",
+  "dynamic_partition.buckets" = "10"
+);
+
+drop table if exists dws_car_trip_count;
+create table if not exists dws_car_trip_count
+(
+    `stt`                          DATETIME comment '窗口起始时间',
+    `edt`                          DATETIME comment '窗口结束时间',
+    `cur_date`                     DATE comment '当天日期',
+    `vin`                 		   VARCHAR(20) comment '汽车Id',
+    `mileage`    					BIGINT  replace comment '里程表总里程',
+    `one_count` 					BIGINT  replace comment '距离上次数据行驶里程'
+) engine = olap
+    aggregate key (
+`stt`,`edt`,`cur_date`,`vin`
+)
+comment "行程域-车辆粒度行程汇总表"
+partition by range(`cur_date`)()
+distributed by hash(`stt`) buckets 10
+properties (
+  "replication_num" = "1",
+  "dynamic_partition.enable" = "true",
+  "dynamic_partition.time_unit" = "DAY",
+  "dynamic_partition.end" = "3",
+  "dynamic_partition.prefix" = "par",
+  "dynamic_partition.buckets" = "10"
+);
+
+drop table if exists dws_electric_battery_window;
+create table if not exists dws_electric_battery_window
 (
     `stt`           DATETIME comment '窗口起始时间',
     `edt`           DATETIME comment '窗口结束时间',
@@ -201,7 +209,7 @@ create table if not exists dws_electric_accelerator_agg_electric_window
     `sum_electric`  DOUBLE  replace comment '电机总电流',
     `electric_count` int replace  comment '统计次数'
 
-    )
+)
     engine = olap
     aggregate key (`stt`, `edt`,`cur_date`,`vin`)
     comment '电压域各车油门电流累计表'
@@ -228,7 +236,7 @@ create table if not exists dws_energy_charge_cycles_window
     `charge_cycles`  int  replace comment '总充电次数',
     `charge_slow_cycles`  int  replace comment '总慢充电次数',
     `charge_fast_cycles`  int  replace comment '总快充电次数'
-    )
+)
     engine = olap
     aggregate key (`stt`, `edt`,`cur_date`,`vin`)
     comment '电压域各车充电次数汇总表'
@@ -242,3 +250,23 @@ create table if not exists dws_energy_charge_cycles_window
                    "dynamic_partition.prefix" = "par",
                    "dynamic_partition.buckets" = "10"
                );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

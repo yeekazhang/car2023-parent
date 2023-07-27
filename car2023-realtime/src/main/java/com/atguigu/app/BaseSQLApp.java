@@ -112,8 +112,8 @@ public abstract class BaseSQLApp {
 
         tEnv.executeSql(
                 "create table base_dic (" +
-                " dic_code string," + //如果是原子类型，则表示这个是rowkey，字段类型和名字随意
-                " info row<dic_name string>," +  //字段名必须是hbase中的列族保持一致，类型必须是row，嵌套进去的就是列
+                " dic_code string," +
+                " info row<dic_name string>," +
                 " primary key (dic_code) not enforced" +
                 ") with (" +
                 " 'connector' = 'hbase-2.2'," +

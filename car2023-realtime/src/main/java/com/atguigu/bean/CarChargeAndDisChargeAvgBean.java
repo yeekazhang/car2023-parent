@@ -16,9 +16,18 @@ public class CarChargeAndDisChargeAvgBean {
     // 窗口结束时间
     private String edt;
     // 当天日期
-    private String cur_date;
+    private String curDate;
     // 汽车id
     private String vin ;
+
+    // 汽车品牌
+    String trademark;
+
+    // 充电类型
+    String chargeType;
+
+    // 车型
+    String category;
 
     //平均电压分子
     private Long totalVol;
@@ -40,13 +49,4 @@ public class CarChargeAndDisChargeAvgBean {
     private Long ts;
 
 
-    // 车型
-    @JSONField(serialize = false)  // 要不要序列化这个字段
-    private String type;
-    // 品牌
-    @JSONField(serialize = false)  // 要不要序列化这个字段
-    private String trademark;
-    //车辆分类
-    @JSONField(serialize = false)  // 要不要序列化这个字段
-    private String category;
 }

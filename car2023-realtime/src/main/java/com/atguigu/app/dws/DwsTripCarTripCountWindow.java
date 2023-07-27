@@ -49,7 +49,7 @@ public class DwsTripCarTripCountWindow extends BaseApp {
         result
             .map(new DorisMapFunction<>())
 
-            .sinkTo(FlinkSinkUtil.getDorisSink("car_db.dws_car_trip_count"));
+            .sinkTo(FlinkSinkUtil.getDorisSink("car.dws_car_trip_count"));
     }
 
     private SingleOutputStreamOperator<CarTripCountBean> windowAndAgg(SingleOutputStreamOperator<CarTripCountBean> beanStream) {
@@ -82,7 +82,7 @@ public class DwsTripCarTripCountWindow extends BaseApp {
 
                         bean.setStt(DateFormatUtil.tsToDateTime(ctx.window().getStart()));
                         bean.setEdt(DateFormatUtil.tsToDateTime(ctx.window().getEnd()));
-                        bean.setCur_date(DateFormatUtil.tsToDateForPartition(ctx.window().getStart()));
+                        bean.setCurDate(DateFormatUtil.tsToDateForPartition(ctx.window().getStart()));
 
                         out.collect(bean);
                     }
