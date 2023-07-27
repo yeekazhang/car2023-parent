@@ -23,15 +23,15 @@ import org.apache.flink.util.Collector;
 import java.time.Duration;
 
 /**
- * 车辆放电平均电压电流电阻统计
+ * 车辆充电平均电压电流电阻提统计
  */
-public class DwsElectricCarDisChargingAvgVol extends BaseApp {
+public class DwsElectricCarChargeAvgVolWindow extends BaseApp {
     public static void main(String[] args) {
-        new DwsElectricCarDisChargingAvgVol().start(
-            40010,
+        new DwsElectricCarChargeAvgVolWindow().start(
+            40011,
             2,
-            "DwsElectricCarDisChargingAvgVol",
-            Constant.TOPIC_DWD_ELECTRIC_DISCHARGING
+            "DwsElectricCarChargeAvgVol",
+            Constant.TOPIC_DWD_ELECTRIC_CHARGING
         );
     }
 
@@ -42,6 +42,9 @@ public class DwsElectricCarDisChargingAvgVol extends BaseApp {
 
         // 2. 开窗聚合
         SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> result = windowAndAgg(beanStream);
+
+
+
 
 
 
@@ -72,15 +75,15 @@ public class DwsElectricCarDisChargingAvgVol extends BaseApp {
 
 
 
-        // 3. 写出到 doris 中
 
-        //writeToDoris(result);
+        // 3. 写出到 doris 中
+        writeToDoris(result);
     }
 
     private void writeToDoris(SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> result) {
         result
             .map(new DorisMapFunction<>())
-            .sinkTo(FlinkSinkUtil.getDorisSink("car_db.dws_car_discharge_avg"));
+            .sinkTo(FlinkSinkUtil.getDorisSink("car_db.dws_car_charge_avg"));
     }
 
     private SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> windowAndAgg(SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> beanStream) {
@@ -139,13 +142,13 @@ public class DwsElectricCarDisChargingAvgVol extends BaseApp {
                     Long insulationResistance = value.getLong("insulation_resistance");
 
                     out.collect(CarChargeAndDisChargeAvgBean.builder()
-                        .vin(vin)
-                        .ts(ts)
-                        .totalVol(voltage)
-                        .totalElectricCurrent(electricCurrent)
-                        .totalInsulationResistance(insulationResistance)
+                            .vin(vin)
+                            .ts(ts)
+                            .totalVol(voltage)
+                            .totalElectricCurrent(electricCurrent)
+                            .totalInsulationResistance(insulationResistance)
                             .num(1L)
-                        .build());
+                            .build());
                 }
             });
     }

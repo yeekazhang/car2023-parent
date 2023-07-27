@@ -25,9 +25,9 @@ import org.apache.flink.util.Collector;
 
 import java.time.Duration;
 
-public class DwsTripCarTripCount extends BaseApp {
+public class DwsTripCarTripCountWindow extends BaseApp {
     public static void main(String[] args) {
-        new DwsTripCarTripCount().start(40009,
+        new DwsTripCarTripCountWindow().start(40009,
             2,
             "DwsTripCarTripCount",
             Constant.TOPIC_DWD_TRIP_JOURNEY);

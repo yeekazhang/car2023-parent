@@ -1,7 +1,6 @@
 package com.atguigu.util;
 
 import com.alibaba.fastjson.JSONObject;
-import com.atguigu.common.Constant;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.flink.shaded.guava30.com.google.common.base.CaseFormat;
 import org.apache.hadoop.conf.Configuration;
@@ -14,6 +13,7 @@ import org.apache.hadoop.hbase.util.Bytes;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class HBaseUtil {
     public static Connection getHBaseConnection() throws IOException {
@@ -25,9 +25,30 @@ public class HBaseUtil {
 
     }
 
+    public static AsyncConnection getHbaseAsyncConnection(){
+        Configuration conf = new Configuration();
+        conf.set("hbase.zookeeper.quorum", "hadoop162");
+        conf.set("hbase.zookeeper.property.clientPort", "2181");
+        try {
+            return ConnectionFactory.createAsyncConnection(conf).get();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void closeHBaseConn(Connection hbaseConn) throws IOException {
         if (hbaseConn != null && !hbaseConn.isClosed()) {
             hbaseConn.close();
+        }
+    }
+
+    public static void closeAsyncHbaseConnection(AsyncConnection asyncConn) {
+        if (asyncConn != null) {
+            try {
+                asyncConn.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -39,6 +60,7 @@ public class HBaseUtil {
         TableName tableName = TableName.valueOf(nameSpace,table);
         // 判断要建的表是否存在
         if (admin.tableExists(tableName)) {
+            System.out.println("表已存在");
             return;
         }
         // 列族描述器
@@ -47,6 +69,7 @@ public class HBaseUtil {
         TableDescriptor desc = TableDescriptorBuilder.newBuilder(tableName)
             .setColumnFamily(cfDesc) // 给表设置列族
             .build();
+        System.out.println(nameSpace + table + "完成建表");
         admin.createTable(desc);
         admin.close();
     }
@@ -123,6 +146,36 @@ public class HBaseUtil {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+    }
+
+    public static JSONObject readDimAsync(AsyncConnection hbaseAsyncConn,
+                                          String namespace,
+                                          String tableName,
+                                          String rowKey) {
+
+        AsyncTable<AdvancedScanResultConsumer> asyncTable = hbaseAsyncConn
+            .getTable(TableName.valueOf(namespace, tableName));
+
+        Get get = new Get(Bytes.toBytes(rowKey));
+        // 获取 result
+        try {
+            Result result = asyncTable.get(get).get();
+            List<Cell> cells = result.listCells();
+            JSONObject dim = new JSONObject();
+            for (Cell cell : cells) {
+                String key = Bytes.toString(CellUtil.cloneQualifier(cell));
+                String value = Bytes.toString(CellUtil.cloneValue(cell));
+
+                dim.put(key, value);
+            }
+            return dim;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
 
     }
 }

@@ -4,12 +4,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.atguigu.app.BaseApp;
 import com.atguigu.bean.CarChargeAndDisChargeAvgBean;
 import com.atguigu.common.Constant;
+import com.atguigu.function.AsyncDimFunction;
 import com.atguigu.function.DorisMapFunction;
-import com.atguigu.function.MapDimFunction;
 import com.atguigu.util.DateFormatUtil;
 import com.atguigu.util.FlinkSinkUtil;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.ReduceFunction;
+import org.apache.flink.streaming.api.datastream.AsyncDataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
@@ -21,13 +22,14 @@ import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 import org.apache.flink.util.Collector;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 车辆充电平均电压电流电阻提统计
  */
-public class DwsElectricCarChargeAvgVol extends BaseApp {
+public class DwsElectricCarChargeAvgVolWindow_ASYNC extends BaseApp {
     public static void main(String[] args) {
-        new DwsElectricCarChargeAvgVol().start(
+        new DwsElectricCarChargeAvgVolWindow_ASYNC().start(
             40011,
             2,
             "DwsElectricCarChargeAvgVol",
@@ -41,15 +43,24 @@ public class DwsElectricCarChargeAvgVol extends BaseApp {
         SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> beanStream = parseToPojo(stream);
 
         // 2. 开窗聚合
-        SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> result = windowAndAgg(beanStream);
-
-
-
+        SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> noDimStream = windowAndAgg(beanStream);
 
 
 
         // 2.5 补充维度
-        result.map(new MapDimFunction<CarChargeAndDisChargeAvgBean>() {
+        SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> result = joinDim(noDimStream);
+        result.print();
+
+
+        // 3. 写出到 doris 中
+        writeToDoris(result);
+    }
+
+    private SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> joinDim(SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> noDimStream) {
+
+        return AsyncDataStream.unorderedWait(
+            noDimStream,
+            new AsyncDimFunction<CarChargeAndDisChargeAvgBean>() {
                 @Override
                 public String getRowKey(CarChargeAndDisChargeAvgBean bean) {
                     return bean.getVin();
@@ -66,18 +77,12 @@ public class DwsElectricCarChargeAvgVol extends BaseApp {
                     bean.setTrademark(dim.getString("trademark"));
                     bean.setType(dim.getString("type"));
                 }
-            })
-            .print();
+            }
+        ,
+            120,
+            TimeUnit.SECONDS);
 
 
-
-
-
-
-
-
-        // 3. 写出到 doris 中
-       // writeToDoris(result);
     }
 
     private void writeToDoris(SingleOutputStreamOperator<CarChargeAndDisChargeAvgBean> result) {
