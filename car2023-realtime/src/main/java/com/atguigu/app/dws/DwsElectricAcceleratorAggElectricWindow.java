@@ -107,7 +107,7 @@ public class DwsElectricAcceleratorAggElectricWindow extends BaseApp {
                     }
                 })
                 .map(new DorisMapFunction<>())
-                .sinkTo(FlinkSinkUtil.getDorisSink("car.dws_electric_accelerator_aggelectricwindow"));
+                .sinkTo(FlinkSinkUtil.getDorisSink("car.dws_electric_accelerator_agg_electric_window"));
 
 
 
