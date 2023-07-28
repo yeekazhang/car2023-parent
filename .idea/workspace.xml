@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96007084-2712-4f86-b850-1fa97f52d24d" name="Changes" comment="sugar">
+    <list default="true" id="96007084-2712-4f86-b850-1fa97f52d24d" name="Changes" comment="最终版1">
+      <change afterPath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/bean/MotorTemp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/mapper/TempMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/service/TempService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/service/TempServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doris.sql" beforeDir="false" afterPath="$PROJECT_DIR$/doris.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/controller/SugarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/car2023-sugar/src/main/java/com/atguigu/car2023sugar/controller/SugarController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="yeeka" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -79,7 +83,8 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "SQL Dialects",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Java",
+    "spring.configuration.checksum": "a7979b68073a7a2473c6cb8ee685b6ca",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -104,30 +109,11 @@
       <recent name="$PROJECT_DIR$/car2023-realtime/src/main/resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.atguigu.car2023sugar.service" />
       <recent name="com.atguigu.app.dwd" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DwsTempMotorTemperatureControlWindow">
-    <configuration name="DwdTempBattery" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dwd.DwdTempBattery" />
-      <module name="car2023-realtime" />
-      <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
-      <target name="@@@LOCAL@@@" />
-      <selectedOptions>
-        <option name="target.project.path" />
-      </selectedOptions>
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.atguigu.app.dwd.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Spring Boot.Car2023SugarApplication">
     <configuration name="DwdTempMotor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
@@ -148,10 +134,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DwsTempBatteryTemperatureControlWindow (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="DwdTripJourney" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dws.DwsTempBatteryTemperatureControlWindow" />
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dwd.DwdTripJourney" />
       <module name="car2023-realtime" />
       <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
       <target name="@@@LOCAL@@@" />
@@ -160,7 +146,7 @@
       </selectedOptions>
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.atguigu.app.dws.*" />
+          <option name="PATTERN" value="com.atguigu.app.dwd.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -168,10 +154,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DwsTempBatteryTemperatureControlWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="DwsElectricCarDisChargingAvgVolWindow (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dws.DwsTempBatteryTemperatureControlWindow" />
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dws.DwsElectricCarDisChargingAvgVolWindow" />
       <module name="car2023-realtime" />
       <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
       <target name="@@@LOCAL@@@" />
@@ -192,6 +178,26 @@
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dws.DwsTempMotorTemperatureControlWindow" />
+      <module name="car2023-realtime" />
+      <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
+      <target name="@@@LOCAL@@@" />
+      <selectedOptions>
+        <option name="target.project.path" />
+      </selectedOptions>
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.app.dws.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DwsTripCarTripCountWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.app.dws.DwsTripCarTripCountWindow" />
       <module name="car2023-realtime" />
       <projectPathOnTarget name="projectPathOnTarget" value="/home/atguigu/car2023-parent" />
       <target name="@@@LOCAL@@@" />
@@ -248,9 +254,9 @@
       <list>
         <item itemvalue="Application.DwsTempMotorTemperatureControlWindow" />
         <item itemvalue="Application.DwdTempMotor" />
-        <item itemvalue="Application.DwsTempBatteryTemperatureControlWindow" />
-        <item itemvalue="Application.DwsTempBatteryTemperatureControlWindow (1)" />
-        <item itemvalue="Application.DwdTempBattery" />
+        <item itemvalue="Application.DwsTripCarTripCountWindow" />
+        <item itemvalue="Application.DwdTripJourney" />
+        <item itemvalue="Application.DwsElectricCarDisChargingAvgVolWindow (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -281,6 +287,7 @@
       <workItem from="1690204773413" duration="1453000" />
       <workItem from="1690245201224" duration="19458000" />
       <workItem from="1690272053256" duration="52207000" />
+      <workItem from="1690437167443" duration="15781000" />
     </task>
     <task id="LOCAL-00001" summary="初始状态">
       <created>1690181840801</created>
@@ -415,7 +422,21 @@
       <option name="project" value="LOCAL" />
       <updated>1690368005041</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="修改doris建表语句">
+      <created>1690432456242</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1690432456242</updated>
+    </task>
+    <task id="LOCAL-00021" summary="最终版1">
+      <created>1690449258782</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1690449258783</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -454,7 +475,9 @@
     <MESSAGE value="yeeka" />
     <MESSAGE value="sugar" />
     <MESSAGE value="redis" />
-    <option name="LAST_COMMIT_MESSAGE" value="redis" />
+    <MESSAGE value="修改doris建表语句" />
+    <MESSAGE value="最终版1" />
+    <option name="LAST_COMMIT_MESSAGE" value="最终版1" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
